@@ -1,0 +1,14 @@
+import {rankFrameSvg} from './rank-art.js';
+import {RANKS,ENTRY} from './rank-system.js';
+export const escapeBanner=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Presentation only: no profile writes or migration. Historical level stays intact.
+export function rankForLevel(value){const level=Math.max(0,Math.trunc(Number(value)||0));let rank=0;for(let i=0;i<ENTRY.length;i++)if(level>=ENTRY[i])rank=i;return {rank,gems:Math.min(5,Math.floor((level-ENTRY[rank])/(rank+1))),level};}
+export function galleryPortrait(source){return '<svg viewBox="247 -16 274 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="'+escapeBanner(source)+'" width="768" height="1152"/></svg>';}
+let bannerSequence=0;
+export function rankBanner({rank=0,gems=0,name='Allenatore',level=0,title='',portrait='',interactive=false,prime=false}={}){
+ rank=Math.max(0,Math.min(6,Math.trunc(Number(rank)||0)));gems=Math.max(0,Math.min(5,Math.trunc(Number(gems)||0)));
+ const mask='rank-interior-'+(++bannerSequence);
+ const label=prime?'SHINKA PRIME · sette gemme rappresentative':RANKS[rank]+' · '+gems+'/5 gemme';const tag=interactive?'button':'div',action=interactive?' data-act="trainer-open" aria-label="Apri la tua targhetta"':'',avatarAction=interactive?' data-act="wardrobe-open" aria-label="Apri editor personaggio"':'';
+ if(prime)return '<div class="prime-approved" role="group" aria-label="'+label+'"><img src="assets/rank-official/prime.png" width="2334" height="755" alt="SHINKA PRIME"><span class="prime-portrait">'+portrait+'</span><strong class="prime-name">'+escapeBanner(name)+'</strong><small class="prime-meta">'+escapeBanner(title)+' · Liv. '+escapeBanner(level)+'</small></div>';
+ return '<div class="rank-banner" data-rank="'+rank+'" data-gems="'+gems+'" role="group" aria-label="'+label+'"><svg class="rank-scene" viewBox="0 115 2172 450" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><svg x="345" y="245" width="1475" height="240" viewBox="0 0 1475 240"><defs><clipPath id="'+mask+'"><path d="M55 0H1420Q1475 0 1475 120Q1475 240 1420 240H55Q0 240 0 120Q0 0 55 0Z"/></clipPath></defs><g clip-path="url(#'+mask+')"><rect width="1475" height="240" fill="#1a1124"/><image href="assets/rank-v2/palestra-fulmine-C.png" width="1475" height="240" preserveAspectRatio="xMidYMid slice"/><rect width="1475" height="240" fill="#100b19" opacity=".34"/></g></svg></svg><'+tag+' class="rank-portrait"'+avatarAction+'>'+portrait+'</'+tag+'>'+rankFrameSvg(rank,gems,mask+'-gems')+'<'+tag+' class="rank-copy"'+action+'><span class="rank-name" title="'+escapeBanner(name)+'">'+escapeBanner(name)+'</span><span class="rank-meta"><span class="rank-title">'+escapeBanner(title)+'</span>'+(title?'<span aria-hidden="true">·</span>':'')+'<span class="rank-level">Liv. '+escapeBanner(level)+'</span></span></'+tag+'></div>';
+}

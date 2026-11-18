@@ -1,0 +1,22 @@
+export const RANKS=['Acciaio','Argento','Smeraldo','Zaffiro','Rubino','Oro','Diamante perlaceo'];
+export const ENTRY=[0,6,17,33,54,80,111];
+export const DECAY=[0,0,0,0,21,14,7];
+const DAY=86400000;
+export function addDate(date,n){return new Date(Date.parse(date+'T12:00:00Z')+n*DAY).toISOString().slice(0,10);}
+export function distance(a,b){return Math.round((Date.parse(b+'T12:00:00Z')-Date.parse(a+'T12:00:00Z'))/DAY);}
+export function localDate(instant,timeZone){const parts=new Intl.DateTimeFormat('en-CA',{timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(instant));const get=t=>parts.find(p=>p.type===t).value;return `${get('year')}-${get('month')}-${get('day')}`;}
+export function monday(date){const dow=new Date(date+'T12:00:00Z').getUTCDay();return addDate(date,-((dow+6)%7));}
+export function createDemo({date='2026-11-16',timeZone=Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Rome'}={}){new Intl.DateTimeFormat('en',{timeZone});if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||addDate(date,0)!==date)throw new Error('Data non valida');return {date,timeZone,startDate:date,day:0,rank:0,gems:0,partial:0,level:0,decayAt:date,days:[],eligibleSince:null,streak:0,prime:false,history:[],events:[],weeks:[]};}
+function event(s,text){s.events.unshift(`${s.date}: ${text}`);}
+function eligibility(s){if(s.rank!==6||s.gems!==5){s.eligibleSince=null;s.streak=0;}else if(s.eligibleSince===null){s.eligibleSince=s.date;s.streak=0;}}
+export function setRank(s,rank,gems){if(s.prime)losePrime(s,'Cambio manuale demo');s.rank=Math.max(0,Math.min(6,Math.trunc(Number(rank)||0)));s.gems=Math.max(0,Math.min(5,Math.trunc(Number(gems)||0)));s.partial=0;s.level=Math.max(s.level,ENTRY[s.rank]+s.gems*(s.rank+1));s.decayAt=s.date;s.eligibleSince=null;s.streak=0;eligibility(s);event(s,'Configurazione manuale');}
+function losePrime(s,reason){s.prime=false;s.history.at(-1).end=s.date;s.rank=6;s.gems=5;s.partial=0;s.decayAt=s.date;s.eligibleSince=s.date;s.streak=0;event(s,`PRIME perso · ${reason}`);}
+export function weekDays(s,start=monday(s.date)){return s.days.filter(d=>d>=start&&d<addDate(start,7)).length;}
+export function rollingDays(s){return s.days.filter(d=>d>addDate(s.date,-7)&&d<=s.date).length;}
+function closeWeek(s){const start=addDate(s.date,-7),end=addDate(s.date,-1);const eligible=s.eligibleSince!==null;const count=s.days.filter(d=>d>=start&&d<=end&&(s.prime||d>s.eligibleSince)).length;const valid=count>=3;s.weeks.push({start,end,count,valid,eligible});if(s.prime){if(!valid){losePrime(s,'settimana conclusa con meno di 3 giorni validi');return true;}event(s,'PRIME mantenuto · settimana valida');return false;}if(!eligible)return false;s.streak=valid?s.streak+1:0;event(s,`Settimana ${start} · ${count} giorni · serie ${s.streak}`);if(s.streak>=(s.history.length?4:8)){s.prime=true;s.history.push({start:s.date,end:null});event(s,'Incoronazione SHINKA PRIME');}return false;}
+export function workout(s){if(s.days.includes(s.date))return false;s.days.push(s.date);s.level++;s.decayAt=s.date;if(!s.prime){if(s.gems===5&&s.rank<6){promote(s); }else if(s.gems<5){s.partial++;if(s.partial>=s.rank+1){s.partial=0;s.gems++;event(s,'Gemma conquistata');}}}eligibility(s);event(s,'Allenamento valido');return true;}
+// Preview promotion consumes the next distinct training day, matching the official entry levels.
+export function promote(s){if(s.prime||s.gems!==5||s.rank===6)return false;s.rank++;s.gems=0;s.partial=0;s.decayAt=s.date;eligibility(s);event(s,`Promozione a ${RANKS[s.rank]}`);return true;}
+export function advanceDays(s,n=1,train=false){for(let i=0;i<Math.max(0,Math.min(3650,Math.trunc(Number(n)||0)));i++){s.date=addDate(s.date,1);s.day=distance(s.startDate,s.date);const lost=s.date===monday(s.date)?closeWeek(s):false;if(train)workout(s);if(!s.prime&&!lost&&DECAY[s.rank]&&distance(s.decayAt,s.date)>=DECAY[s.rank]){s.decayAt=s.date;s.partial=0;if(s.gems>0)s.gems--;if(s.gems===0){s.rank--;s.gems=5;event(s,`Retrocessione a ${RANKS[s.rank]}`);}else event(s,'Gemma persa per inattività');eligibility(s);}}}
+// Complete a calendar week; if fewer than three dates remain, finish the partial week then simulate a full one.
+export function validWeek(s){let remaining=distance(s.date,addDate(monday(s.date),7));if(remaining<3||(s.date===s.eligibleSince&&remaining===3)){do{workout(s);advanceDays(s,1);}while(s.date!==monday(s.date));remaining=7;}for(let i=0;i<remaining;i++){if([Math.min(1,remaining-3),Math.floor(remaining/2),remaining-1].includes(i))workout(s);advanceDays(s,1);}}

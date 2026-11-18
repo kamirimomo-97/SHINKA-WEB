@@ -1,0 +1,2 @@
+const badge=document.getElementById('shinka-build-version');
+if(badge){try{const response=await fetch(new URL('./version.json',import.meta.url),{cache:'no-store'});if(!response.ok)throw Error('Version unavailable');const info=await response.json();if(!/^\d+\.\d+\.\d+(?:-(?:dev|alpha|beta|rc)\.\d+)?$/.test(info.version))throw Error('Invalid version');badge.textContent='v'+info.version;badge.title='Versione della build SHINKA installata';}catch{badge.textContent='v?';badge.title='Versione della build non verificabile';}}

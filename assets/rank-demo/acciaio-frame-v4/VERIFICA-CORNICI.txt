@@ -1,0 +1,7 @@
+Sei cornici ricavate dagli originali pixel-v2.
+Stato 0: differenze fuori dalle aree interne=0, differenze nello stemma=0.
+Stato 1: differenze fuori dalle aree interne=0, differenze nello stemma=0.
+Stato 2: differenze fuori dalle aree interne=0, differenze nello stemma=0.
+Stato 3: differenze fuori dalle aree interne=0, differenze nello stemma=0.
+Stato 4: differenze fuori dalle aree interne=0, differenze nello stemma=0.
+Stato 5: differenze fuori dalle aree interne=0, differenze nello stemma=0.
