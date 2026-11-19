@@ -40,3 +40,10 @@
 .rank-release-motion .rank-arrival-up{animation:none!important}
 .rank-release-particles{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:4;pointer-events:none}
 @media(prefers-reduced-motion:reduce){.rank-release-motion{animation:none}.rank-release-particles{display:none}}
+
+/* Promote the entire identity as one object, preserving all approved anchors. */
+.rank-charge-motion .rank-motion-visual{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;pointer-events:none}
+.rank-motion-visual .rank-copy{pointer-events:none}
+.rank-release-motion .rank-portrait,.rank-release-motion .rank-copy,.rank-release-motion .rank-head{pointer-events:none}
+
+.rank-release-motion.rank-release-down{animation:rank-settle 650ms ease-out both}.rank-release-down .rank-arrival-down{animation:none!important}
