@@ -1,3 +1,3 @@
-import {addDate} from './rank-system.js';
+import {addDate} from './rank-system.js?v=0.60.4';
 const date=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&addDate(s,0)===s;
 export function validRankProgress(s){try{return !!s&&!Array.isArray(s)&&s.version===1&&Number.isInteger(s.rank)&&s.rank>=0&&s.rank<=6&&Number.isInteger(s.gems)&&s.gems>=0&&s.gems<=5&&Number.isInteger(s.partial)&&s.partial>=0&&s.partial<s.rank+1&&(s.gems!==5||s.partial===0)&&date(s.decayAt)&&(s.lastValidDate===null||date(s.lastValidDate))&&typeof s.timeZone==='string'&&!!new Intl.DateTimeFormat('en',{timeZone:s.timeZone})&&Array.isArray(s.processedDates)&&s.processedDates.length<=100000&&s.processedDates.every(date)&&new Set(s.processedDates).size===s.processedDates.length&&Object.keys(s).every(k=>['version','rank','gems','partial','decayAt','lastValidDate','timeZone','processedDates'].includes(k));}catch{return false;}}

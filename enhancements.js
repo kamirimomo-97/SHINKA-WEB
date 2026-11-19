@@ -1,5 +1,5 @@
-import {createId} from './local-id.js';
-import {metrics,rewards,periodSessions,muscleTotals,strengthBySession,previousExercise,coachSuggestions,applySuggestion,localDay} from './core.js';
+import {createId} from './local-id.js?v=0.60.4';
+import {metrics,rewards,periodSessions,muscleTotals,strengthBySession,previousExercise,coachSuggestions,applySuggestion,localDay} from './core.js?v=0.60.4';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>new Intl.NumberFormat('it-IT',{maximumFractionDigits:1}).format(n);
 const date=n=>new Date(n).toLocaleDateString('it-IT',{day:'numeric',month:'short'});

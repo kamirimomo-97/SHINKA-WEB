@@ -1,7 +1,7 @@
-import {rankForLevel} from './rank-banner.js';
-import {playerLevel} from './progression.js';
-import {localDate,addDate,distance,DECAY} from './rank-system.js';
-import {metrics} from './core.js';
+import {rankForLevel} from './rank-banner.js?v=0.60.4';
+import {playerLevel} from './progression.js?v=0.60.4';
+import {localDate,addDate,distance,DECAY} from './rank-system.js?v=0.60.4';
+import {metrics} from './core.js?v=0.60.4';
 export const RANK_MIGRATION_BACKUP='shinka-rank-before-rules-v1';
 export function trainingDates(db,timeZone){return [...new Set((db.sessions||[]).filter(s=>Number.isFinite(s.finished)&&metrics(s).sets>0).map(s=>localDate(s.finished,timeZone)))].sort();}
 function decay(s,to,inclusive=true){while(s.rank>3){const next=addDate(s.decayAt,DECAY[s.rank]);if(next>to||(!inclusive&&next===to))break;s.decayAt=next;s.partial=0;if(s.gems>0)s.gems--;if(s.gems===0){s.rank--;s.gems=5;}}}

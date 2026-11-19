@@ -1,5 +1,5 @@
-import {weekKey,weekRewards,playerLevel} from './progression.js';
-import {metrics} from './core.js';
+import {weekKey,weekRewards,playerLevel} from './progression.js?v=0.60.4';
+import {metrics} from './core.js?v=0.60.4';
 
 export function weeklyStatus(db,now=Date.now()){
  if(!db.journeyV2)return null;

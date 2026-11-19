@@ -1,10 +1,10 @@
-import {createId} from './local-id.js';
-import {dumbbell,weekConstellation} from './fantasy-chrome.js';
-import {eggArt} from './eggs.js';
-import {canObtain,starterKeys} from './progression.js';
-import {lineages,companionHero,companionProgress,elementIcon,framedCard} from './soul.js';
-import {metrics,rewards,periodSessions,localDay,comparisonKey} from './core.js';
-import {coachPage,progressPage,profileSettings,spark} from './enhancements.js';
+import {createId} from './local-id.js?v=0.60.4';
+import {dumbbell,weekConstellation} from './fantasy-chrome.js?v=0.60.4';
+import {eggArt} from './eggs.js?v=0.60.4';
+import {canObtain,starterKeys} from './progression.js?v=0.60.4';
+import {lineages,companionHero,companionProgress,elementIcon,framedCard} from './soul.js?v=0.60.4';
+import {metrics,rewards,periodSessions,localDay,comparisonKey} from './core.js?v=0.60.4';
+import {coachPage,progressPage,profileSettings,spark} from './enhancements.js?v=0.60.4';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=n=>new Intl.NumberFormat('it-IT',{maximumFractionDigits:1}).format(n),clone=x=>structuredClone(x);
 const button=(t,a,extra='',cls='quiet')=>`<button class="${cls}" data-act="${a}" ${extra}>${t}</button>`;
 const widgetNames={today:'Scheda del giorno',companion:'Shinkaryu attivo',week:'Progressi settimanali',goals:'Obiettivi',coach:'Shinka Coach'};

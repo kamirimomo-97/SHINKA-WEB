@@ -1,5 +1,5 @@
-import {rankForLevel} from './rank-banner.js';
-import {ENTRY,setRank,validWeek,advanceDays} from './rank-system.js';
+import {rankForLevel} from './rank-banner.js?v=0.60.4';
+import {ENTRY,setRank,validWeek,advanceDays} from './rank-system.js?v=0.60.4';
 // Manual preview controls operate only on the laboratory's temporary state.
 const undoStates=new WeakMap();
 export function canUndoPreview(s){return !!undoStates.get(s)?.length;}

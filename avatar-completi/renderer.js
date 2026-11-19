@@ -1,4 +1,4 @@
-import {MODEL,PALETTES,renderPlan,getModel} from './catalog.js';
+import {MODEL,PALETTES,renderPlan,getModel} from './catalog.js?v=0.60.4';
 const assets=new Map();
 function load(src){if(!assets.has(src))assets.set(src,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>{if(img.naturalWidth!==MODEL.width||img.naturalHeight!==MODEL.height){assets.delete(src);reject(Error('Formato immagine incompatibile'));}else resolve(img);};img.onerror=()=>{assets.delete(src);reject(Error('Immagine non disponibile. Controlla la connessione e riprova.'));};img.src=src;}));return assets.get(src);}
 function canvas(){const c=document.createElement('canvas');c.width=MODEL.width;c.height=MODEL.height;return c;}

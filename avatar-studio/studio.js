@@ -1,5 +1,5 @@
-import {ITEMS,SLOTS,PALETTES,RIG,STORAGE_KEY,initialState,normalizeState,equip,claimEligible} from './catalog.js';
-import {renderAvatar} from './renderer.js';
+import {ITEMS,SLOTS,PALETTES,RIG,STORAGE_KEY,initialState,normalizeState,equip,claimEligible} from './catalog.js?v=0.60.4';
+import {renderAvatar} from './renderer.js?v=0.60.4';
 const $=s=>document.querySelector(s),clone=o=>JSON.parse(JSON.stringify(o));let loaded=initialState(),readError=false;
 try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)loaded=normalizeState(JSON.parse(raw));}catch{readError=true}
 let draft=clone(loaded),category='top',renderSequence=0,renderReady=false;

@@ -1,6 +1,6 @@
-import {avatarIdentity} from './avatar-identities.js';
-import {normalizeAvatar} from './avatar-catalog.js';
-import {lineages} from './soul.js';
+import {avatarIdentity} from './avatar-identities.js?v=0.60.4';
+import {normalizeAvatar} from './avatar-catalog.js?v=0.60.4';
+import {lineages} from './soul.js?v=0.60.4';
 export const galleryIds=Array.from({length:10},(_,i)=>String(i+1).padStart(2,'0'));
 export const galleryElements={neutral:['Neutro','○','#c8c4dd'],fire:['Fuoco','火','#ff9868'],water:['Acqua','水','#66d6ff'],nature:['Natura','葉','#a8da82'],wind:['Aria','風','#9ce9de'],earth:['Terra','土','#ddb482'],lightning:['Fulmine','雷','#ffe070'],shadow:['Ombra','月','#bd9af6'],ice:['Ghiaccio','❄','#b9e9ff'],light:['Luce','☀','#ffedbd']};
 const root='assets/avatar-gallery/';

@@ -1,5 +1,5 @@
-import {rankFrameSvg} from './rank-art.js';
-import {RANKS,ENTRY} from './rank-system.js';
+import {rankFrameSvg} from './rank-art.js?v=0.60.4';
+import {RANKS,ENTRY} from './rank-system.js?v=0.60.4';
 export const escapeBanner=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Presentation only: no profile writes or migration. Historical level stays intact.
 export function rankForLevel(value){const level=Math.max(0,Math.trunc(Number(value)||0));let rank=0;for(let i=0;i<ENTRY.length;i++)if(level>=ENTRY[i])rank=i;return {rank,gems:Math.min(5,Math.floor((level-ENTRY[rank])/(rank+1))),level};}

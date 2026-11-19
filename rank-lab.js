@@ -1,11 +1,11 @@
-import {applyAvatarTuning} from './rank-avatar-tuning.js';
-import {celebrateRank,rankTransition} from './rank-transition-effects.js';
-import {createGemSound} from './rank-gem-sound.js';
+import {applyAvatarTuning} from './rank-avatar-tuning.js?v=0.60.4';
+import {celebrateRank,rankTransition} from './rank-transition-effects.js?v=0.60.4';
+import {createGemSound} from './rank-gem-sound.js?v=0.60.4';
 const gemSound=createGemSound(),rankSound=createGemSound(undefined,'assets/audio/rank-metal-hit.mp3'),chargeSound=createGemSound(undefined,'assets/audio/rank-energy-riser.mp3');
-import {celebrateGems,awardedGemIndices} from './rank-gem-effects.js';
-import {previewLevel,previewRank,canUndoPreview} from './rank-preview-controls.js';
-import {rankBanner,galleryPortrait} from './rank-banner.js';
-import {RANKS,ENTRY,DECAY,createDemo,setRank,workout,advanceDays,validWeek,weekDays,monday,addDate,distance} from './rank-system.js';
+import {celebrateGems,awardedGemIndices} from './rank-gem-effects.js?v=0.60.4';
+import {previewLevel,previewRank,canUndoPreview} from './rank-preview-controls.js?v=0.60.4';
+import {rankBanner,galleryPortrait} from './rank-banner.js?v=0.60.4';
+import {RANKS,ENTRY,DECAY,createDemo,setRank,workout,advanceDays,validWeek,weekDays,monday,addDate,distance} from './rank-system.js?v=0.60.4';
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let s=createDemo({date:'2026-11-16'});
 $('#rank').innerHTML=RANKS.map((r,i)=>`<option value="${i}">${r}</option>`).join('');$('#gem').innerHTML=Array.from({length:6},(_,i)=>`<option>${i}</option>`).join('');
