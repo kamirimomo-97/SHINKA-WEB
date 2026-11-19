@@ -1,8 +1,9 @@
+import {localDate} from './rank-system.js';
 import {metrics} from './core.js';
 export const starterKeys=['fire','water','nature'];
 export function dayKey(time){const d=new Date(time);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
 export function weekKey(time){const d=new Date(time);d.setDate(d.getDate()-((d.getDay()+6)%7));return dayKey(d);}
-export function validDays(db){return [...new Set(db.sessions.filter(s=>Number.isFinite(s.finished)&&metrics(s).sets>0).map(s=>dayKey(s.finished)))];}
+export function validDays(db){return [...new Set(db.sessions.filter(s=>Number.isFinite(s.finished)&&metrics(s).sets>0).map(s=>db.rankProgress?.timeZone?localDate(s.finished,db.rankProgress.timeZone):dayKey(s.finished)))];}
 export function playerLevel(db){return db.demoMax?.playerLevel??validDays(db).length;}
 export function weekRewards(db,now=Date.now()){const current=weekKey(now),weeks=[...new Set(db.sessions.filter(s=>Number.isFinite(s.finished)&&metrics(s).sets>0).map(s=>weekKey(s.finished)))];return weeks.filter(w=>w<current&&!db.journeyV2.claims[w]).sort();}
 export function migrateProgression(db){if(db.journeyV2)return db;const base={},days=new Map();for(const s of [...db.sessions].sort((a,b)=>a.finished-b.finished))if(metrics(s).sets>0&&!days.has(dayKey(s.finished)))days.set(dayKey(s.finished),s.shinkaryu||db.legacyStarter||db.starter);for(const key of ['fire','water','wind','nature'])base[key]=[...days.values()].filter(k=>k===key).length*100;const claims={};for(const s of db.sessions)if(metrics(s).sets>0)claims[weekKey(s.finished)]={migration:true};db.journeyV2={onboarded:false,obtained:db.sessions.length||Object.values(db.creatures).some(c=>c.unlocked>0)?[...new Set([db.starter,...Object.keys(db.creatures).filter(k=>db.creatures[k].unlocked>0)])]:[],xp:base,claims,created:Date.now()};return db;}

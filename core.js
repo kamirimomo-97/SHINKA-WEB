@@ -1,3 +1,4 @@
+import {validRankProgress} from './rank-state-validation.js';
 import {creatureKeys} from './creature-catalog.js';
 import {appearancePalettes} from './avatar-appearance.js';
 import {avatarParts,legacyAvatarParts} from './avatar-catalog.js';
@@ -51,6 +52,7 @@ export function validate(data){
  if(data.timer!==null&&data.timer!==undefined&&!num(data.timer,0,1e14)&&!(data.timer?.paused===true&&num(data.timer.remaining,0,3600)))fail('Timer non valido');
  for(const list of [data.plans,data.sessions,data.library]){const ids=new Set();for(const item of list){if(!id(item.id)||ids.has(item.id))fail('Identificatore duplicato o non valido');ids.add(item.id);}}
  for(const e of data.library)if(!str(e.name)||!id(e.id)||!str(e.muscle))fail('Libreria non valida');
+ if(data.rankProgress!==undefined&&!validRankProgress(data.rankProgress))fail('Progressione rank non valida');
  if(data.trainerBadge!==undefined&&(!data.trainerBadge||Array.isArray(data.trainerBadge)||!['origin','silver','aurora','obsidian'].includes(data.trainerBadge.style)||Object.keys(data.trainerBadge).some(k=>k!=='style')))fail('Targhetta non valida');
  if(data.athlete&&(!str(data.athlete.name,60)||!str(data.athlete.goal,160)||!num(data.athlete.weeklyTarget,1,7)||!Number.isInteger(data.athlete.weeklyTarget)))fail('Profilo non valido');
  if(data.avatar!==undefined&&(!data.avatar||!['male','female'].includes(data.avatar.model)||!['basic','technical','hoodie'].includes(data.avatar.outfit)))fail('Avatar non valido');
