@@ -1,7 +1,7 @@
-import {avatarIdentity} from './avatar-identities.js?v=0.60.4';
-import {rankBanner,galleryPortrait,escapeBanner} from './rank-banner.js?v=0.60.4';
-import {galleryElements,galleryIds} from './avatar-gallery.js?v=0.60.4';
-import {recommendedAvatarPopout,handPoseElements,previewEyeAnchor} from './rank-avatar-policy.js?v=0.60.4';
+import {avatarIdentity} from './avatar-identities.js?v=0.60.5';
+import {rankBanner,galleryPortrait,escapeBanner} from './rank-banner.js?v=0.60.5';
+import {galleryElements,galleryIds} from './avatar-gallery.js?v=0.60.5';
+import {recommendedAvatarPopout,handPoseElements,previewEyeAnchor} from './rank-avatar-policy.js?v=0.60.5';
 const overrides=new Map();
 const popoutFor=e=>overrides.has(e)?overrides.get(e):recommendedAvatarPopout(e);
 function selectElement(){const e=document.querySelector('#review-element').value;document.querySelector('#review-popout').checked=popoutFor(e);render();}

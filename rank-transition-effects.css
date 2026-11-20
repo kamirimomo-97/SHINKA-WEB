@@ -47,3 +47,16 @@
 .rank-release-motion .rank-portrait,.rank-release-motion .rank-copy,.rank-release-motion .rank-head{pointer-events:none}
 
 .rank-release-motion.rank-release-down{animation:rank-settle 650ms ease-out both}.rank-release-down .rank-arrival-down{animation:none!important}
+
+/* PRIME has its own canvas: hide its complete identity until impact, then reveal it as one unit. */
+.prime-v2 .prime-release-motion{position:absolute;inset:0;width:100%;height:100%;z-index:1;transform-origin:50% 50%;animation:rank-reveal 10000ms linear both}
+.prime-v2 .prime-charge-motion{z-index:5}
+.prime-v2 .prime-charge-banner{position:absolute;left:0;top:50%;width:100%;height:auto;max-width:none;aspect-ratio:2172/450;margin:0;transform:translateY(-50%);pointer-events:none}
+@media(prefers-reduced-motion:reduce){.prime-v2 .prime-release-motion{animation:none}.prime-v2 .prime-charge-motion{display:none}}
+
+/* Seven ceremonial glints begin once the coronation burst has faded (7s). */
+.prime-gem-glint{opacity:0;transform-origin:0 0;animation:prime-gem-glint 850ms var(--glint-delay) ease-out both;filter:drop-shadow(0 0 9px var(--glint-tone))}
+.prime-gem-glow{fill:var(--glint-tone);filter:blur(12px);opacity:.8}
+.prime-gem-star{fill:#fff;stroke:var(--glint-tone);stroke-width:1.5}
+@keyframes prime-gem-glint{0%{opacity:0;transform:scale(.25) rotate(-20deg)}22%{opacity:1;transform:scale(1.2) rotate(0deg)}45%{opacity:.95;transform:scale(.85) rotate(12deg)}100%{opacity:0;transform:scale(.4) rotate(32deg)}}
+@media(prefers-reduced-motion:reduce){.prime-gem-glints{display:none}}

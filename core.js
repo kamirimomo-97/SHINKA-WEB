@@ -1,7 +1,7 @@
-import {validRankProgress} from './rank-state-validation.js?v=0.60.4';
-import {creatureKeys} from './creature-catalog.js?v=0.60.4';
-import {appearancePalettes} from './avatar-appearance.js?v=0.60.4';
-import {avatarParts,legacyAvatarParts} from './avatar-catalog.js?v=0.60.4';
+import {validRankProgress} from './rank-state-validation.js?v=0.60.5';
+import {creatureKeys} from './creature-catalog.js?v=0.60.5';
+import {appearancePalettes} from './avatar-appearance.js?v=0.60.5';
+import {avatarParts,legacyAvatarParts} from './avatar-catalog.js?v=0.60.5';
 export const TYPES=['normale','warmup','top','backoff','drop'];
 export function timerSeconds(timer,now=Date.now()){if(!timer)return 0;if(typeof timer==='object'&&timer.paused)return Math.max(0,Math.ceil(timer.remaining));return Math.max(0,Math.ceil((timer-now)/1000));}
 export function adjustTimer(timer,delta,now=Date.now()){if(typeof timer==='object'&&timer?.paused)return {...timer,remaining:Math.min(3600,Math.max(0,timer.remaining+delta))};return now+Math.min(3600,Math.max(0,timerSeconds(timer,now)+delta))*1000;}

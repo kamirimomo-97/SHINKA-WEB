@@ -1,4 +1,4 @@
-import {RIG,PALETTES,selectedItems} from './catalog.js?v=0.60.4';
+import {RIG,PALETTES,selectedItems} from './catalog.js?v=0.60.5';
 const cache=new Map();
 function load(src){if(!cache.has(src))cache.set(src,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>{if(img.naturalWidth!==RIG.width||img.naturalHeight!==RIG.height){cache.delete(src);reject(Error('Immagine incompatibile con il modello'));}else resolve(img)};img.onerror=()=>{cache.delete(src);reject(Error('Immagine non disponibile. Riprova con la connessione attiva.'))};img.src=src;}));return cache.get(src);}
 function canvas(){const c=document.createElement('canvas');c.width=RIG.width;c.height=RIG.height;return c;}

@@ -1,5 +1,5 @@
-import {MODEL,MODELS,getModel,getOutfits,getHairstyles,PALETTES,STORAGE_KEY,initialState,normalizeState,chooseModel,chooseOutfit,chooseHair} from './catalog.js?v=0.60.4';
-import {renderAvatar} from './renderer.js?v=0.60.4';
+import {MODEL,MODELS,getModel,getOutfits,getHairstyles,PALETTES,STORAGE_KEY,initialState,normalizeState,chooseModel,chooseOutfit,chooseHair} from './catalog.js?v=0.60.5';
+import {renderAvatar} from './renderer.js?v=0.60.5';
 const $=s=>document.querySelector(s),clone=o=>JSON.parse(JSON.stringify(o));let saved=initialState(),readError=false;
 try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)saved=normalizeState(JSON.parse(raw));}catch{readError=true;}
 let draft=clone(saved),category='outfits',sequence=0,ready=false;

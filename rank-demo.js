@@ -1,7 +1,7 @@
-import {avatarArt} from './wardrobe.js?v=0.60.4';
-import {hydrateAvatars} from './avatar-appearance.js?v=0.60.4';
-import {readIdentity,PROFILE_KEY} from './badge-identity.js?v=0.60.4';
-import {gemCount,steelAssets,steelAsset} from './raster-steel.js?v=0.60.4';
+import {avatarArt} from './wardrobe.js?v=0.60.5';
+import {hydrateAvatars} from './avatar-appearance.js?v=0.60.5';
+import {readIdentity,PROFILE_KEY} from './badge-identity.js?v=0.60.5';
+import {gemCount,steelAssets,steelAsset} from './raster-steel.js?v=0.60.5';
 let count=0,ready=false;
 const $=s=>document.querySelector(s);
 $('#plaque').innerHTML=steelAssets.map((src,n)=>`<img class="raster-badge ${n===0?'active':''}" data-state="${n}" src="${src}" width="2172" height="724" alt="" aria-hidden="true" decoding="async">`).join('');
