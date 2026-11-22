@@ -1,0 +1,32 @@
+/* Exact official master, cropped only by viewport; no rescaling of its proportions. */
+.prime-approved.prime-v2{position:relative;isolation:isolate;container-type:inline-size;width:100%;max-width:760px;aspect-ratio:1774/500;margin:0}
+.prime-v2 .prime-master-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.prime-v2 .prime-portrait,.prime-v2 .prime-v2-head{position:absolute;left:9.188275%;top:33.2%;width:11.668546%;height:44.8%;padding:0;margin:0;display:block}
+.prime-v2 .prime-portrait{background:radial-gradient(ellipse at 50% 20%,#5b416b 0%,#2b1b38 48%,#100c18 88%);z-index:2;overflow:hidden;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.prime-v2 .prime-v2-head{z-index:3;pointer-events:none;filter:drop-shadow(0 .3cqw .2cqw #07030d99)}
+.prime-v2 .prime-portrait>svg,.prime-v2 .prime-v2-head>svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:50% 70%;transform:translate(calc(var(--avatar-x,.5)*1cqw),calc(var(--avatar-y,-1)*1cqw)) scale(var(--avatar-scale,1.7))}
+.prime-v2 .prime-portrait>svg>image,.prime-v2 .prime-v2-head>svg>image{transform-origin:384px 85px;transform:translateY(9px) scale(1.14)}
+.prime-v2 .prime-v2-head>svg>image{mask:var(--portrait-head-mask)}
+.prime-v2 .prime-copy{position:absolute;left:26.5%;top:44%;width:46%;height:25%;z-index:4;display:flex;flex-direction:column;justify-content:center;gap:.35cqw;overflow:visible;--rank-accent:#e6c4ff;--plate-top:#d1a8e8;--plate-low:#28113f;--plate-mid:#6f448c}
+.prime-v2 .prime-copy .rank-name{font-size:clamp(11px,3.1cqw,23.56px);line-height:1.08}
+.prime-v2 .prime-copy .rank-meta{width:100%;min-width:0;font-size:clamp(8px,2cqw,15.2px)}
+.prime-v2 .prime-copy .rank-title{font-size:clamp(7px,1.9cqw,14.44px);letter-spacing:.08em}
+.prime-v2 .prime-copy .rank-level{padding:.35cqw 1.4cqw;min-width:10cqw;font-size:clamp(8px,2.1cqw,15.96px);background:linear-gradient(135deg,#e5c8ff,#9c70c9 25%,#271038 55%,#784f9d);clip-path:polygon(8% 0,92% 0,100% 50%,92% 100%,8% 100%,0 50%)}
+.prime-v2 .prime-copy .rank-level-label{font-size:clamp(6px,1.45cqw,11.02px)}.prime-v2 .prime-copy .rank-level-value{font-size:clamp(8px,2.1cqw,15.96px)}
+.prime-v2 .prime-weeks{position:absolute;left:82.638106%;top:74.6%;width:3.72%;height:7.2%;display:flex;align-items:center;justify-content:center;z-index:4;background:linear-gradient(180deg,#21052d,#160723);color:#fff5e7;font:700 var(--week-size)/1 Georgia,serif;font-variant-numeric:tabular-nums;letter-spacing:.03em;text-shadow:0 1px 2px #000;white-space:nowrap}
+.prime-art-fields{display:grid;gap:8px;margin:10px 0;padding:10px 0;border-bottom:1px solid #84609e55}.prime-art-fields>label:first-child{display:flex;gap:8px;align-items:center;font-size:13px}.prime-art-fields input[type=checkbox]{width:auto;margin:0}.prime-art-fields input[type=number]{width:100%}
+.demo-stage.prime-art-preview .quick-rank-controls,.demo-stage.prime-art-preview #status,.demo-stage.prime-art-preview #progress,.demo-stage.prime-art-preview .sound-controls{display:none}
+
+.prime-v2 .prime-v2-head{display:none}.prime-v2.avatar-popout .prime-v2-head{display:block}
+
+.demo-stage.prime-art-preview #hero[data-prime-bg="light"]{background:#eee8f2}.demo-stage.prime-art-preview #hero[data-prime-bg="checker"]{background-color:#ede9f1;background-image:conic-gradient(#bdb4c9 25%,transparent 0 50%,#bdb4c9 0 75%,transparent 0);background-size:20px 20px}
+
+/* Irregular stationary glints on selected metal anchors, with no diffuse veil. */
+.prime-v2 .prime-living-glints{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
+.prime-living-glint{opacity:0;fill:var(--glint-color);transform-origin:0 0;animation:prime-living-glint var(--glint-period) var(--glint-phase) ease-in-out infinite}
+.prime-v2[data-rank-transition] .prime-living-glints{visibility:hidden}
+@keyframes prime-living-glint{0%,82%,100%{opacity:0;transform:scale(.2)}87%{opacity:1;transform:scale(calc(var(--glint-size)*var(--glint-boost,1)))}92%{opacity:.2;transform:scale(.45)}95%{opacity:.85;transform:scale(calc(var(--glint-size)*var(--glint-boost,1)*.8))}}
+@media(prefers-reduced-motion:reduce){.prime-v2 .prime-living-glints{display:none}}
+
+/* Compact Home-sized banners need a stronger, crisp sparkle. */
+@container (max-width:440px){.prime-v2 .prime-living-glint{--glint-boost:1.25}}

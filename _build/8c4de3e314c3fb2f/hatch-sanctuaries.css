@@ -1,0 +1,28 @@
+/* Same stage, camera and background throughout shell, flash and arrival. */
+body #modal:has(.hatch-environment){width:min(660px,100vw);max-width:100vw;height:100dvh;max-height:100dvh;padding:0;margin:auto;inset:0;border:0;border-radius:0;background:#120e1d;overflow:hidden;box-shadow:0 0 90px #0009}
+body #modal:has(.hatch-environment)::backdrop{background:#0a0713e0;backdrop-filter:blur(12px)}
+body #modal:has(.hatch-environment)>.row{display:none}
+body .hatch-interaction,body .hatch-finale,body .hatch-arrival{height:100%;min-height:0;background:none;overflow:hidden}
+body .hatch-environment{inset:0;height:100%;width:100%;overflow:hidden}
+.hatch-sanctuary{position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover;object-position:center 60%;pointer-events:none}
+.hatch-scene-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#08061126,transparent 30%,#0d08122b 62%,#0c0714d9 100%);pointer-events:none}
+body .hatch-terrain{left:0;bottom:23%;width:100%;height:35%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 14px #0007);z-index:0}
+body .hatch-contact{bottom:29%;left:29%;width:42%;height:4%;z-index:1;opacity:.28}
+body .hatch-shell-position{bottom:29%;left:14%;width:72%;height:47%;z-index:2;align-items:flex-end}
+body .hatch-shell-position .elemental-egg,body .hatch-touch .hatch-shell-position .elemental-egg{width:min(100%,390px);max-width:390px}
+body .hatch-companion-position{bottom:29%;left:7%;width:86%;height:55%;z-index:2}
+body .hatch-companion-position>svg{overflow:visible}
+body .hatch-touch{padding:0;border-radius:0}
+body .hatch-finale .hatch-half{padding:0}
+body .hatch-environment .hatch-core,body .hatch-environment .hatch-particle{top:50%}
+body .arrival-aura{top:30%;bottom:27%;left:10%;right:10%}
+body .arrival-skip-target{inset:0 0 25%;height:75%}
+body .hatch-earned{left:20px;right:20px;bottom:max(24px,env(safe-area-inset-bottom));gap:6px;padding:14px 0 0;text-shadow:0 2px 8px #000}
+body .hatch-earned h1{font:500 clamp(27px,6vw,39px)/1.1 Georgia,serif;color:var(--egg)}
+body .hatch-earned h2{font:500 clamp(22px,5vw,30px)/1.2 Georgia,serif;color:#f0e4f5}
+body .hatch-earned p{font-size:13px;color:#d2c8d7}
+body .hatch-earned button{margin-top:10px;min-height:52px;min-width:230px;max-width:100%}
+.hatch-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:14px;z-index:12;width:44px;height:44px;padding:0;font:27px/1 Georgia,serif;border:1px solid #d6c4e267;border-radius:50%;background:#160e26a6;color:#f0e4f5;backdrop-filter:blur(8px)}
+.hatch-close:hover{background:#30203bcc}
+.hatch-demo-intro{margin:18px 0}.hatch-demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.hatch-demo-grid>button{padding:8px 5px 12px;background:#22162dd9;border:1px solid #a785c857;border-radius:15px;min-width:0;color:#e9def0}.hatch-demo-grid .elemental-egg{width:100%;height:auto;max-width:170px;margin:auto}.hatch-demo-grid strong{display:block;font-size:14px}.hatch-demo-grid button:focus-visible{outline:2px solid #e5b8ff;outline-offset:3px}
+@media(max-height:600px){body .hatch-terrain{bottom:26%;height:36%}body .hatch-shell-position,body .hatch-companion-position{bottom:32%;height:56%}body .hatch-earned{bottom:12px;gap:2px}body .hatch-earned h1{font-size:24px}body .hatch-earned h2{font-size:20px}body .hatch-earned button{min-height:42px;margin-top:4px}}

@@ -1,0 +1,9 @@
+/* A localized celebration, without moving frame, avatar or copy. */
+.rank-banner .gem-celebration{position:absolute;inset:0;width:100%;height:100%;z-index:4;overflow:visible;pointer-events:none;color:var(--gem-color)}
+.gem-awarded{transform-box:view-box;transform-origin:var(--gem-origin);animation:gem-seat 1050ms cubic-bezier(.2,.8,.25,1) both}
+.gem-impact{fill:none;stroke:currentColor;stroke-width:7;transform-box:view-box;transform-origin:var(--gem-origin);animation:gem-ring 1000ms ease-out both;filter:drop-shadow(0 0 18px currentColor)}
+.gem-spark{fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;animation:gem-sparks 1000ms ease-out both;filter:drop-shadow(0 0 10px currentColor)}
+@keyframes gem-seat{0%{transform:scale(.78);filter:brightness(1.2)}22%{transform:scale(1.24);filter:brightness(3) drop-shadow(0 0 26px var(--gem-color))}42%{transform:scale(1.05);filter:brightness(1.8) drop-shadow(0 0 16px var(--gem-color))}65%{transform:scale(.97);filter:brightness(1.45)}100%{transform:scale(1);filter:brightness(1)}}
+@keyframes gem-ring{0%{opacity:1;transform:scale(.5)}100%{opacity:0;transform:scale(3.8)}}
+@keyframes gem-sparks{0%{opacity:0;transform:translate(0,0)}18%{opacity:1}100%{opacity:0;transform:translate(var(--spark-x),var(--spark-y))}}
+@media(prefers-reduced-motion:reduce){.gem-awarded{animation:none}.gem-celebration{display:none}}

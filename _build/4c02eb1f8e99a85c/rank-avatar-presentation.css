@@ -1,0 +1,12 @@
+/* Approved avatar presentation shared by the app and local lab. */
+.avatar-adjusted .rank-portrait>svg,.avatar-adjusted .rank-head>svg{transform-origin:50% 70%;transform:translate(calc(var(--avatar-x)*1cqw),calc(var(--avatar-y)*1cqw)) scale(var(--avatar-scale))}
+.rank-head{display:none;position:absolute;left:4.143646%;top:29.555556%;width:11.003683%;height:44.666667%;z-index:3;pointer-events:none}
+.rank-banner.avatar-popout .rank-head{display:block}
+.rank-head>svg{display:block;width:100%;height:100%;overflow:visible}
+.rank-head>svg>image{transform-box:view-box;transform-origin:384px 85px;transform:translateY(9px) scale(1.14);mask:var(--portrait-head-mask);filter:drop-shadow(0 3px 4px #09051180)}
+.rank-banner.avatar-popout .rank-copy{z-index:5}
+.rank-banner.avatar-adjusted .rank-portrait{left:2.383057%;top:22.408889%;width:14.524862%;height:58.960000%;z-index:3}
+.rank-banner.avatar-adjusted .rank-portrait>svg{position:absolute;left:12.121212%;top:12.121212%;width:75.757576%;height:75.757576%;overflow:visible}
+.avatar-adjusted .rank-head{z-index:4}
+.avatar-adjusted .rank-head{filter:drop-shadow(0 .3cqw .2cqw #07030d99)}
+.avatar-adjusted .rank-scene>svg>g>rect:last-child{opacity:.48}

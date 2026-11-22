@@ -1,0 +1,26 @@
+/* Approved rank geometry: one canvas, one C background, fixed left alignment. */
+#app .player-panel{padding:0!important;margin:0 0 7px!important;min-height:0;background:none;border:0;box-shadow:none;max-width:1100px}
+#app .player-panel::before,#app .player-panel::after{display:none}
+#app .player-panel>.row{height:auto!important;display:block}
+#app .player-panel>.row>.chip{display:none}
+.rank-banner{position:relative;isolation:isolate;display:block;container-type:inline-size;width:100%;max-width:760px;aspect-ratio:2172/450;margin:0 auto 0 0;padding:0;flex:0 0 auto}
+.rank-scene,.rank-frame{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.rank-scene{z-index:0}.rank-frame{z-index:2}
+.rank-banner .rank-portrait{position:absolute;left:4.143646%;top:29.555556%;width:11.003683%;height:44.666667%;z-index:1;display:block;min-height:0;margin:0;padding:0;border:0;border-radius:0;overflow:hidden;clip-path:polygon(26.3598% 0,72.8033% 0,100% 53.2338%,74.0586% 100%,24.6862% 100%,0 53.7313%);background:#1c1228;box-shadow:none}
+.rank-portrait>svg,.rank-portrait .player-avatar-art{display:block;width:100%;height:100%;min-height:0;background:none;border:0}
+.rank-portrait .player-avatar-art img{display:block;width:100%;height:100%;object-fit:cover}
+.rank-banner .rank-copy{position:absolute;left:19.567219%;top:35.555556%;width:59.85267%;height:38.222222%;z-index:3;display:flex;flex-direction:column;justify-content:flex-start;gap:.184162cqw;margin:0;padding:0;min-height:0;min-width:0;border:0;border-radius:0;background:transparent;box-shadow:none;color:#f3e9f8;text-align:left;text-shadow:0 1px 3px #000,0 1px 7px #000;overflow:hidden}
+.rank-copy .rank-name{display:block;flex:0 0 auto;min-width:0;width:100%;font:600 4.143646cqw/1 Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:0}
+.rank-copy .rank-meta{display:flex;align-items:center;gap:1.381215cqw;min-width:0;width:100%;font:3.59116cqw/1 Georgia,serif;white-space:nowrap;overflow:hidden}
+.rank-copy .rank-title{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rank-copy .rank-level{flex-shrink:0}
+.rank-banner button:focus-visible{outline:2px solid #f4cdff;outline-offset:2px}.rank-copy:hover{filter:brightness(1.15)}
+#app .player-panel .player-profile-details>summary{position:relative;right:auto;top:auto;display:block;width:auto;height:auto;min-height:28px;font:12px Georgia;text-align:left;padding:6px 10px;color:#dbc6e8;list-style:disclosure-closed}
+#app .player-panel .player-profile-details>summary::after{content:none}
+body[data-page="profile"] #app>section.card:first-child:has(.rank-banner){border:0;background:none;box-shadow:none;padding:0;margin-bottom:16px}
+.trainer-badge-editor>h2{font:24px Georgia,serif}.trainer-badge-editor p{font-size:13px;line-height:1.6}.badge-preview{background:#140e1e;border-radius:12px;padding:8px;margin-bottom:18px;pointer-events:none}.badge-editor-actions{margin-top:20px}.badge-editor-actions button{flex:1;min-height:46px}
+.prime-approved{position:relative;width:100%;max-width:760px;aspect-ratio:2334/755}.prime-approved>img{width:100%;height:100%;object-fit:contain}.prime-portrait{position:absolute;left:10%;top:30%;width:11%;height:34%;overflow:hidden;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}.prime-portrait svg{width:100%;height:100%}.prime-name,.prime-meta{position:absolute;left:26%;right:28%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px #000}.prime-name{top:42%;font:600 clamp(12px,2.5vw,28px) Georgia}.prime-meta{top:56%;font:clamp(10px,1.7vw,18px) Georgia}
+
+.live-rank-audio{display:flex;align-items:center;gap:14px;margin:16px 0}.live-rank-audio button{min-height:44px}.live-rank-audio label{flex:1;font-size:12px}.live-rank-audio input{display:block;width:100%;accent-color:#c991f0}
+
+/* A single title line reserves the level plaque and stays bounded at minimum size. */
+.rank-copy .rank-title{display:block;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

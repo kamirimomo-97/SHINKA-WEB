@@ -1,0 +1,145 @@
+#modal.gallery-dialog{width:min(1240px,96vw);max-width:1240px;padding:0;border:1px solid #ffffff26;background:#111218;color:#f7f4ef;max-height:96dvh;overflow:auto;border-radius:20px;scrollbar-width:thin;scrollbar-color:#ffffff30 #111218}
+#modal.gallery-dialog::backdrop{background:#06060be6;backdrop-filter:blur(10px)}
+#modal.gallery-dialog>.row{display:none}
+.avatar-gallery{font-family:system-ui,sans-serif;isolation:isolate}
+.avatar-gallery *{box-sizing:border-box}
+.avatar-gallery button{font-family:inherit;cursor:pointer;touch-action:manipulation}
+.avatar-gallery .gallery-heading{height:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 28px;border-bottom:1px solid #ffffff12;background:#12131b}
+.gallery-heading>div{min-width:0}.gallery-heading small{font-size:9px;letter-spacing:2.4px;color:var(--gallery-tone)}
+.gallery-heading h2{font-size:25px;line-height:1.15;margin:5px 0 0;font-weight:600;letter-spacing:-.4px}
+.gallery-close{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid #ffffff25;border-radius:50%;background:#ffffff06;color:#eee;font-size:17px}
+.gallery-stage{position:relative;min-width:0;height:clamp(360px,55dvh,650px);background-size:cover;background-position:center 58%;isolation:isolate;overflow:hidden;touch-action:pan-y}
+.gallery-stage:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#08090f55,transparent 24%,transparent 70%,#111218df);z-index:-1;pointer-events:none}
+.gallery-stage-title{position:absolute;inset:18px 26px auto;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:3;pointer-events:none}
+.gallery-stage-title>span{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--gallery-tone);padding:7px 13px;background:#101018bc;border:1px solid #ffffff20;border-radius:30px;backdrop-filter:blur(8px)}
+.gallery-stage-title small{font-size:10px;letter-spacing:2px;color:#fff;text-shadow:0 2px 6px #000}.gallery-stage-title small span{color:#bbb}
+.gallery-seal{display:block;width:25px;height:29px;flex-shrink:0;background:currentColor;mask:url('../../assets/brand/seal.svg') center/contain no-repeat;-webkit-mask:url('../../assets/brand/seal.svg') center/contain no-repeat}
+.gallery-stage-title .gallery-seal{width:16px;height:20px}
+.gallery-athlete{position:absolute;left:7%;bottom:18px;width:60%;height:94%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 12px 12px #0006);pointer-events:none}
+.gallery-companion{position:absolute;right:12%;bottom:30px;width:29%;text-align:center;z-index:2;pointer-events:none}
+.gallery-companion img{display:block;width:100%;height:clamp(130px,22dvh,250px);object-fit:contain;filter:drop-shadow(0 12px 10px #0008)}
+.gallery-companion>span{display:inline-flex;flex-direction:column;gap:5px;padding:8px 15px;background:#101018ad;border:1px solid #ffffff20;border-radius:10px;font-size:14px;font-weight:600;backdrop-filter:blur(8px)}
+.gallery-companion small{font-size:8px;letter-spacing:1.2px;color:var(--gallery-tone)}
+.gallery-pet-pending{position:absolute;right:12%;bottom:65px;width:160px;display:grid;justify-items:center;gap:10px;color:var(--gallery-tone);text-align:center;padding:15px;background:#101018a8;border:1px solid #ffffff15;border-radius:12px}
+.gallery-pet-pending small{font-size:11px;line-height:1.5;color:#dedbe5}
+.gallery-arrow{position:absolute;top:45%;display:grid;place-items:center;width:40px;height:56px;padding:0;border:1px solid #ffffff35;border-radius:12px;background:#1010188c;color:#fff;font-size:30px;z-index:4;backdrop-filter:blur(6px)}
+.gallery-arrow.previous{left:18px}.gallery-arrow.next{right:18px}.gallery-arrow:hover,.gallery-close:hover{background:#ffffff20;border-color:var(--gallery-tone)}
+.gallery-controls{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:32px;padding:18px 28px 20px;background:#111218;border-top:1px solid #ffffff0a}
+.gallery-cast,.gallery-affinity{min-width:0}
+.gallery-section-label{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.gallery-section-label h3{font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.3px;margin:0;color:#edeaf0}
+.gallery-section-label>span{font-size:10px;color:#9c98a6}
+.gallery-roster{position:relative;display:flex;gap:8px;max-width:100%;padding:4px 3px 9px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#ffffff30 transparent}
+.gallery-roster button{position:relative;flex:0 0 64px;height:78px;padding:0;overflow:hidden;border:1px solid #ffffff18;border-radius:10px;background:linear-gradient(#343440,#20212a);color:#fff;scroll-snap-align:center;transition:border-color .15s,background .15s}
+.gallery-roster img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+.gallery-roster button>span{position:absolute;bottom:3px;right:4px;padding:2px 4px;border-radius:4px;background:#111b;color:#d2cddc;font-size:9px}
+.gallery-roster button[aria-pressed=true]{outline:2px solid var(--gallery-tone);outline-offset:1px;background:color-mix(in srgb,var(--gallery-tone) 24%,#20212a);border-color:var(--gallery-tone)}
+.gallery-roster button[aria-pressed=true]>span{color:#fff;background:#111d}.gallery-roster button:hover{border-color:var(--gallery-tone)}
+.gallery-elements{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.gallery-elements button{min-width:0;min-height:48px;display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 4px;border:1px solid #ffffff14;border-radius:8px;background:#ffffff03;color:#bdb8c7;font-size:10px;transition:border-color .15s,background .15s}
+.gallery-elements .gallery-seal{width:17px;height:22px;color:var(--element-tone)}
+.gallery-elements button[aria-pressed=true]{border-color:var(--element-tone);background:color-mix(in srgb,var(--element-tone) 13%,#111218);color:#fff}
+.gallery-elements button:hover{border-color:var(--element-tone)}
+.avatar-gallery .gallery-footer{position:sticky;bottom:0;z-index:6;display:flex;align-items:center;gap:16px;padding:13px 28px;background:#15161ef5;border-top:1px solid #ffffff16;backdrop-filter:blur(16px)}
+.gallery-selection{display:grid;gap:4px;min-width:0;margin-right:auto}.gallery-selection strong{font-size:12px;font-weight:600}.gallery-selection strong span{color:var(--gallery-tone)}.gallery-selection small{font-size:10px;color:#a5a0b0}
+.gallery-status{font-size:11px;line-height:1.4;color:var(--gallery-tone);margin:0;max-width:220px}.gallery-status:empty{display:none}
+.avatar-gallery .gallery-cancel{border:0;background:transparent;color:#c5c0cf;font-size:12px;padding:12px}
+#modal.gallery-dialog .gallery-save{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:46px;min-width:220px;padding:13px 20px;border:0;background:var(--gallery-tone)!important;color:#14121a!important;border-radius:9px!important;font:700 12px/1.4 system-ui,sans-serif;filter:none;box-shadow:none}
+#modal.gallery-dialog .gallery-save:before{display:none}#modal.gallery-dialog .gallery-save:disabled{opacity:.45;cursor:wait}.gallery-save>span{font-size:18px}
+.avatar-gallery button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.gallery-profile-art{display:block;overflow:hidden;height:100%;width:100%;border-radius:inherit}.gallery-profile-art img{display:block;width:100%;height:100%;object-fit:contain}.gallery-profile-art.is-head{position:relative}.gallery-profile-art.is-head img{height:330%;max-height:none;object-fit:cover;object-position:top;transform:translateY(-2%)}.onboarding-avatar .gallery-profile-art{height:340px}.onboarding-panel .onboarding-avatar .gallery-profile-art{height:100%}.avatar-portrait .gallery-profile-art{height:100%;min-height:70px}
+@media(min-width:1100px){.gallery-roster button{flex-basis:calc((100% - 72px)/10);min-width:52px}}
+@media(max-width:800px){.gallery-controls{grid-template-columns:minmax(0,1fr);gap:14px;padding:16px 20px}.gallery-roster button{flex-basis:68px;height:80px}.gallery-elements{grid-template-columns:repeat(10,minmax(0,1fr))}.gallery-elements button{flex-direction:column;gap:3px;font-size:9px;padding:6px 2px;min-height:54px}.gallery-footer{gap:10px}.gallery-companion{right:6%;width:32%}.gallery-athlete{left:0;width:69%}}
+@media(max-width:600px){#modal.gallery-dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}.avatar-gallery .gallery-heading{padding:13px 18px;gap:10px}.gallery-heading h2{font-size:20px}.gallery-heading small{font-size:8px;letter-spacing:1.6px}.gallery-close{width:36px;height:36px}.gallery-stage{height:52dvh;min-height:340px;max-height:520px;background-position:center}.gallery-stage-title{inset:12px 16px auto}.gallery-stage-title small{font-size:9px;letter-spacing:1px}.gallery-stage-title>span{padding:5px 9px;font-size:11px}.gallery-athlete{left:-3%;width:78%;height:90%;bottom:12px}.gallery-companion{right:0;bottom:25px;width:41%}.gallery-companion img{height:135px}.gallery-companion>span{font-size:12px;padding:7px 10px}.gallery-companion small{font-size:7px}.gallery-arrow{width:32px;height:44px;font-size:25px}.gallery-arrow.previous{left:8px}.gallery-arrow.next{right:8px}.gallery-pet-pending{right:12px;bottom:35px;width:115px;padding:10px}.gallery-controls{padding:13px 16px 16px;gap:13px}.gallery-section-label{margin-bottom:7px}.gallery-roster{gap:10px}.gallery-roster button{flex-basis:68px;height:80px}.gallery-elements{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.gallery-elements button{flex-direction:column;font-size:10px;min-height:54px;gap:3px}.gallery-elements .gallery-seal{width:16px;height:21px}.avatar-gallery .gallery-footer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px 12px;padding:11px 16px max(12px,env(safe-area-inset-bottom));}.gallery-selection{margin:0}.gallery-selection strong{font-size:11px}.gallery-selection small{font-size:9px}.gallery-cancel{grid-column:2;grid-row:1}.gallery-status{grid-column:1/-1;grid-row:2;max-width:none;font-size:10px}#modal.gallery-dialog .gallery-save{grid-column:1/-1;min-width:0;width:100%;min-height:46px}.gallery-status:empty{display:none}}
+@media(prefers-reduced-motion:reduce){.avatar-gallery *{transition:none!important;scroll-behavior:auto!important}}
+
+/* Desktop: scene and selection share the available window height. */
+@media(min-width:901px){
+ #modal.gallery-dialog{width:min(1420px,96vw);max-width:1420px;overflow:hidden}
+ .avatar-gallery{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,29vw,380px);grid-template-rows:auto minmax(0,1fr) auto;height:min(850px,94dvh)}
+ .avatar-gallery .gallery-heading{grid-column:1/-1;padding:18px 26px}
+ .gallery-stage{grid-column:1;grid-row:2/4;height:100%;min-height:0;max-height:none;background-position:center;border-right:1px solid #ffffff15}
+ .gallery-stage:after{background:linear-gradient(180deg,#08090f65,transparent 30%,#08090f15 60%,#1112188c),linear-gradient(90deg,#08090f18,#08090f18)}
+ .gallery-athlete{left:-3%;width:79%;height:91%;bottom:24px}
+ .gallery-companion{right:0;bottom:24px;width:43%}
+ .gallery-companion img{height:clamp(150px,25dvh,260px)}
+ .gallery-pet-pending{right:4%;bottom:70px}
+ .gallery-controls{grid-column:2;grid-row:2;display:flex;flex-direction:column;gap:24px;padding:24px 22px;overflow-y:auto;overscroll-behavior:contain;border-top:0;background:linear-gradient(150deg,#1b1c27,#111218)}
+ .gallery-section-label{margin-bottom:13px}
+ .gallery-section-label h3{font-size:12px}
+ .gallery-roster{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;padding:3px;overflow:visible;scroll-snap-type:none}
+ .gallery-roster button{width:100%;min-width:0;height:auto;aspect-ratio:.8;flex-basis:auto}
+ .gallery-elements{grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+ .gallery-elements button{flex-direction:column;gap:5px;min-height:64px;padding:8px 2px;font-size:10px}
+ .gallery-elements .gallery-seal{width:20px;height:25px}
+ .avatar-gallery .gallery-footer{grid-column:2;grid-row:3;position:static;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 8px;padding:18px 22px 22px;background:#14151e}
+ .gallery-selection{margin:0}.gallery-selection strong{font-size:12px}.gallery-selection small{font-size:10px}
+ .gallery-cancel{grid-column:2;grid-row:1}
+ .gallery-status{grid-column:1/-1;grid-row:2;max-width:none}
+ #modal.gallery-dialog .gallery-save{grid-column:1/-1;width:100%;min-width:0;min-height:48px}
+}
+@media(min-width:901px) and (max-height:700px){
+ .avatar-gallery .gallery-heading{padding:12px 22px}.gallery-heading h2{font-size:22px}
+ .gallery-controls{padding:16px 20px;gap:18px}.gallery-roster button{max-height:76px;aspect-ratio:auto;height:76px}
+ .gallery-elements button{min-height:55px}.gallery-section-label{margin-bottom:9px}
+ .avatar-gallery .gallery-footer{padding:12px 20px 16px;gap:10px}
+ .gallery-companion img{height:150px}
+}
+@media(min-width:901px) and (max-height:700px){
+ .gallery-roster button{height:64px;max-height:64px}
+ .gallery-elements{grid-auto-rows:48px}.gallery-elements button{height:48px;min-height:48px;padding:4px 2px;gap:2px}
+ .gallery-elements .gallery-seal{height:21px;width:18px}
+}
+@media(min-width:901px) and (max-height:640px){
+ .gallery-controls{padding:12px 20px;gap:12px}.gallery-section-label{margin-bottom:7px}
+ .gallery-roster button{height:54px;max-height:54px}
+ .gallery-elements{grid-auto-rows:44px}.gallery-elements button{height:44px;min-height:44px;font-size:9px}
+}
+
+/* Separate silhouettes, with their visible feet aligned to one ground line. */
+.gallery-stage{container-type:size;--gallery-ground:24px}
+.gallery-stage .gallery-athlete{left:50%;bottom:var(--gallery-ground);width:52%;height:91%;max-width:none;object-position:center bottom;z-index:3;transform:translateX(-50%) translateY(calc(var(--ground-gap,0) * min(91cqh,calc(52cqw / var(--sprite-ratio,.666667)))))}
+.gallery-stage .gallery-companion{left:77%;right:auto;bottom:var(--gallery-ground);width:22%;height:28cqh;z-index:2}
+.gallery-stage .gallery-companion img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;transform:translateY(calc(var(--ground-gap,0) * min(28cqh,calc(22cqw / var(--sprite-ratio,1)))))}
+.gallery-stage .gallery-pet-pending{left:78%;right:auto;bottom:var(--gallery-ground);width:20%;padding:10px 5px}
+@media(max-width:600px){.gallery-stage{--gallery-ground:18px}.gallery-stage .gallery-pet-pending small{font-size:9px}}
+.gallery-stage .gallery-pet-art{display:block;width:100%;height:100%;overflow:hidden;filter:drop-shadow(0 10px 8px #0006)}
+
+.gallery-groups{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:3px;margin-bottom:10px;background:#08090f80;border:1px solid #ffffff14;border-radius:9px}
+.gallery-groups button{min-height:36px;padding:7px 10px;border:1px solid transparent;border-radius:6px;background:transparent;color:#aaa5b4;font-size:12px}
+.gallery-groups button[aria-pressed=true]{background:color-mix(in srgb,var(--gallery-tone) 16%,#171820);border-color:var(--gallery-tone);color:#fff}
+.gallery-roster{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible;scroll-snap-type:none}
+.gallery-roster button{min-width:0;width:100%;height:auto;aspect-ratio:.85}
+@media(max-width:900px){
+ #modal.gallery-dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;overflow:hidden;border:0;border-radius:0}
+ .avatar-gallery{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(100px,1fr) auto auto;height:100dvh;max-height:100dvh;overflow:hidden}
+ .avatar-gallery .gallery-heading{grid-row:1;padding:10px 16px;gap:10px}.gallery-heading h2{font-size:19px;margin-top:3px}.gallery-heading small{font-size:8px;letter-spacing:1.4px}.gallery-close{width:34px;height:34px}
+ .gallery-stage{grid-row:2;height:100%;min-height:0;max-height:none}.gallery-stage-title{inset:9px 12px auto}.gallery-stage-title>span{font-size:10px;padding:4px 8px}.gallery-stage-title small{font-size:8px}.gallery-stage-title .gallery-seal{height:15px;width:13px}
+ .gallery-stage{--gallery-ground:12px}.gallery-arrow{height:40px;width:30px;top:44%}
+ .gallery-controls{grid-row:3;display:grid;grid-template-columns:minmax(0,1fr);gap:9px;padding:9px 14px 10px;min-height:0;overflow:hidden}
+ .gallery-section-label{margin-bottom:5px}.gallery-section-label h3{font-size:10px}.gallery-section-label>span{font-size:9px}
+ .gallery-cast>.gallery-section-label{display:none}
+ .gallery-groups{padding:2px;margin-bottom:6px;gap:3px}.gallery-groups button{min-height:30px;padding:5px 8px;font-size:11px}
+ .gallery-roster{gap:8px;padding:2px 2px 3px;max-width:100%}.gallery-roster button{height:60px;max-height:60px;aspect-ratio:auto}.gallery-roster button>span{font-size:8px;bottom:2px}
+ .gallery-elements{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.gallery-elements button{flex-direction:column;min-height:44px;height:44px;font-size:9px;gap:2px;padding:4px 2px}.gallery-elements .gallery-seal{width:15px;height:18px}
+ .avatar-gallery .gallery-footer{grid-row:4;position:static;display:grid;grid-template-columns:minmax(0,1fr);padding:9px 14px max(10px,env(safe-area-inset-bottom));gap:5px;min-height:0}
+ .gallery-selection,.avatar-gallery .gallery-cancel{display:none}
+ .gallery-status{grid-column:1;grid-row:auto;max-width:none;font-size:10px;line-height:1.2}
+ #modal.gallery-dialog .gallery-save{grid-column:1;min-width:0;min-height:44px;width:100%;padding:10px 16px;font-size:12px}
+}
+@media(max-width:900px) and (max-height:640px){
+ .avatar-gallery .gallery-heading{padding:7px 14px}.gallery-heading small{display:none}.gallery-heading h2{font-size:17px}
+ .gallery-controls{padding:7px 12px;gap:6px}.gallery-groups button{min-height:28px;padding:4px 8px}.gallery-roster button{height:48px;max-height:48px}
+ .gallery-section-label{margin-bottom:4px}.gallery-elements button{min-height:42px;height:42px}.avatar-gallery .gallery-footer{padding-top:7px}
+}
+/* Lock the page behind the full-screen chooser, including its scrollbar. */
+html:has(#modal.gallery-dialog[open]),body:has(#modal.gallery-dialog[open]){overflow:hidden}
+
+/* Shared framing: reuse the gym artwork and anchor the athlete. */
+.gallery-stage{background-size:125% auto;background-position:center 43%}
+.gallery-contact-shadow{position:absolute;left:50%;bottom:calc(var(--gallery-ground) - 7px);width:min(19cqw,23cqh);height:clamp(8px,2cqh,18px);transform:translateX(-50%);background:radial-gradient(ellipse,#0009 0%,#0006 28%,#0002 60%,transparent 75%);filter:blur(3px);z-index:1;pointer-events:none}
+@media(max-width:900px){.gallery-stage{background-size:118% auto;background-position:center 44%}.gallery-contact-shadow{filter:blur(2px)}}
+
+.gallery-identity{padding:14px 24px;background:#171322;border-bottom:1px solid #ffffff12}.gallery-identity strong{font:22px Georgia;color:#f4e8ff;margin-right:12px}.gallery-identity>span{font-size:12px;color:#c7b4d9}.gallery-identity p{margin:6px 0;color:#e0d6e9;font-size:13px;line-height:1.5}.gallery-identity small,.gallery-unlock-note{color:#bba8cb;font-size:11px;line-height:1.5}.gallery-elements button:disabled{opacity:.45;cursor:not-allowed;filter:saturate(.35)}.gallery-roster button span{font-size:11px!important;letter-spacing:0!important}.gallery-unlock-note{margin:8px 0 0}@media(max-width:700px){.gallery-identity{padding:12px 16px}}
+
+.avatar-gallery .gallery-identity{grid-column:1/-1;padding:8px 0;background:none;border:0;margin:0;min-width:0}.gallery-identity summary{display:flex;align-items:center;gap:8px;cursor:pointer;min-height:28px;list-style:none}.gallery-identity summary::after{content:'⌄';margin-left:auto;color:#d4b8e8}.gallery-identity summary strong{font:18px Georgia;margin:0}.gallery-identity summary>span{font-size:11px;color:#c7b4d9}.gallery-identity[open] summary::after{content:'⌃'}.gallery-identity p{font-size:12px}.gallery-identity small{font-size:10px}.gallery-unlock-note{font-size:10px;margin-top:6px}@media(max-width:900px){.avatar-gallery .gallery-controls{overflow:auto;max-height:57dvh}.avatar-gallery .gallery-identity{padding:0}}

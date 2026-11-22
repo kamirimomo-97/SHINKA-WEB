@@ -1,7 +1,10 @@
-import {validRankProgress} from './rank-state-validation.js?v=0.60.5';
-import {creatureKeys} from './creature-catalog.js?v=0.60.5';
-import {appearancePalettes} from './avatar-appearance.js?v=0.60.5';
-import {avatarParts,legacyAvatarParts} from './avatar-catalog.js?v=0.60.5';
+import {isProgressionTraining} from './training-validity.js?v=0.60.6';
+import {validTitlesState} from './title-state.js?v=0.60.6';
+import {FAMILY_LABELS} from './title-exercises.js?v=0.60.6';
+import {validRankProgress} from './rank-state-validation.js?v=0.60.6';
+import {creatureKeys} from './creature-catalog.js?v=0.60.6';
+import {appearancePalettes} from './avatar-appearance.js?v=0.60.6';
+import {avatarParts,legacyAvatarParts} from './avatar-catalog.js?v=0.60.6';
 export const TYPES=['normale','warmup','top','backoff','drop'];
 export function timerSeconds(timer,now=Date.now()){if(!timer)return 0;if(typeof timer==='object'&&timer.paused)return Math.max(0,Math.ceil(timer.remaining));return Math.max(0,Math.ceil((timer-now)/1000));}
 export function adjustTimer(timer,delta,now=Date.now()){if(typeof timer==='object'&&timer?.paused)return {...timer,remaining:Math.min(3600,Math.max(0,timer.remaining+delta))};return now+Math.min(3600,Math.max(0,timerSeconds(timer,now)+delta))*1000;}
@@ -10,7 +13,7 @@ export function setVolume(ex,s){return loadWeight(ex,s.kg)*s.reps+(s.type==='dro
 export function comparisonKey(e){return JSON.stringify([e.id,e.loadMode||'total',e.equipment||'',e.loadMode==='per-hand'?e.handCount||2:1]);}
 export function metrics(session){let volume=0,sets=0,muscles=Object.create(null);for(const ex of session.exercises){for(const s of ex.sets){if(!s.done||s.type==='warmup')continue;sets++;let v=setVolume(ex,s);volume+=v;muscles[ex.muscle]=(muscles[ex.muscle]||0)+v;}}return {volume,sets,muscles:{...muscles}};}
 export function strength(sessions,id){return sessions.flatMap(s=>s.exercises.filter(e=>e.id===id&&!['assisted','bodyweight'].includes(e.loadMode)).flatMap(e=>e.sets.filter(x=>x.done&&x.type!=='warmup'&&x.reps>0&&x.reps<=12&&x.kg>0).map(x=>({date:s.finished,value:loadWeight(e,x.kg)*(1+x.reps/30)}))));}
-export function rewards(sessions){const days=new Set(sessions.filter(s=>metrics(s).sets>0).map(s=>s.day));return {xp:days.size*100,affinity:Math.min(100,days.size*5)};}
+export function rewards(sessions){const days=new Set(sessions.filter(s=>isProgressionTraining(s)).map(s=>s.day));return {xp:days.size*100,affinity:Math.min(100,days.size*5)};}
 export function localDay(time=Date.now()){const d=new Date(time);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 export function periodSessions(sessions,days=28,now=Date.now()){if(!days)return [...sessions].sort((a,b)=>a.finished-b.finished);const cutoff=new Date(now);cutoff.setHours(0,0,0,0);cutoff.setDate(cutoff.getDate()-days+1);return sessions.filter(s=>s.finished>=cutoff.getTime()&&s.finished<=now).sort((a,b)=>a.finished-b.finished);}
 export function muscleTotals(sessions){const result=Object.create(null);for(const session of sessions)for(const ex of session.exercises)for(const s of ex.sets){if(!s.done||s.type==='warmup')continue;const v=setVolume(ex,s);const m=result[ex.muscle]??={volume:0,sets:0,secondary:0};m.volume+=v;m.sets++;for(const secondary of new Set(ex.secondary||[])){if(secondary===ex.muscle)continue;const other=result[secondary]??={volume:0,sets:0,secondary:0};other.secondary++;}}return result;}
@@ -27,6 +30,7 @@ export function validate(data){
  if(!data||data.version!==1||!Array.isArray(data.plans)||!Array.isArray(data.sessions)||!Array.isArray(data.library)||!creatureKeys.includes(data.starter))fail('Backup non compatibile');
  if(data.plans.length>1000||data.sessions.length>10000||data.library.length>2000)fail('Backup troppo grande');
  const checkEx=e=>{
+  if(e?.achievementFamily!==undefined&&!Object.hasOwn(FAMILY_LABELS,e.achievementFamily))fail('Famiglia esercizio non valida');
   if(!e||!str(e.name)||!id(e.id)||!str(e.muscle)||!Array.isArray(e.sets)||e.sets.length>500)fail('Esercizio non valido');
   for(const [key,min,max] of [['rest',5,3600],['repMin',1,1000],['repMax',1,1000],['increment',0,100]])if(e[key]!==undefined&&!num(e[key],min,max))fail('Impostazione esercizio non valida');
   if(e.loadMode!==undefined&&!['total','per-hand','assisted','bodyweight'].includes(e.loadMode))fail('Convenzione di carico non valida');
@@ -44,6 +48,7 @@ export function validate(data){
  };
  for(const p of [...data.plans,...data.sessions,...(data.active?[data.active]:[]),...(data.draft?[data.draft]:[])]){
   if(!p||!id(p.id)||!str(p.name)||!Array.isArray(p.exercises)||p.exercises.length>200)fail('Scheda non valida');
+  if(p.trainingRuleVersion!==undefined&&p.trainingRuleVersion!==2)fail('Regola allenamento non valida');
   if(p.note!==undefined&&!str(p.note,10000))fail('Nota scheda non valida');
   p.exercises.forEach(checkEx);
  }
@@ -51,7 +56,8 @@ export function validate(data){
  if(data.active&&(!num(data.active.started,0,1e14)||!num(data.active.rest,5,3600)||!['Recovery','Standard','Godzilla'].includes(data.active.mode)))fail('Sessione attiva non valida');
  if(data.timer!==null&&data.timer!==undefined&&!num(data.timer,0,1e14)&&!(data.timer?.paused===true&&num(data.timer.remaining,0,3600)))fail('Timer non valido');
  for(const list of [data.plans,data.sessions,data.library]){const ids=new Set();for(const item of list){if(!id(item.id)||ids.has(item.id))fail('Identificatore duplicato o non valido');ids.add(item.id);}}
- for(const e of data.library)if(!str(e.name)||!id(e.id)||!str(e.muscle))fail('Libreria non valida');
+ for(const e of data.library)if((e.achievementFamily!==undefined&&!Object.hasOwn(FAMILY_LABELS,e.achievementFamily))||!str(e.name)||!id(e.id)||!str(e.muscle))fail('Libreria non valida');
+ if(data.titles!==undefined&&!validTitlesState(data.titles,{allowSandbox:data.shinkaEnvironment==='administrator'&&data.demoMax?.titlesUnlocked!==false}))fail('Collezione titoli non valida');
  if(data.rankProgress!==undefined&&!validRankProgress(data.rankProgress))fail('Progressione rank non valida');
  if(data.trainerBadge!==undefined&&(!data.trainerBadge||Array.isArray(data.trainerBadge)||!['origin','silver','aurora','obsidian'].includes(data.trainerBadge.style)||Object.keys(data.trainerBadge).some(k=>k!=='style')))fail('Targhetta non valida');
  if(data.athlete&&(!str(data.athlete.name,60)||!str(data.athlete.goal,160)||!num(data.athlete.weeklyTarget,1,7)||!Number.isInteger(data.athlete.weeklyTarget)))fail('Profilo non valido');

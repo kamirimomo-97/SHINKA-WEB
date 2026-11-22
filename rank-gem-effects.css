@@ -7,3 +7,8 @@
 @keyframes gem-ring{0%{opacity:1;transform:scale(.5)}100%{opacity:0;transform:scale(3.8)}}
 @keyframes gem-sparks{0%{opacity:0;transform:translate(0,0)}18%{opacity:1}100%{opacity:0;transform:translate(var(--spark-x),var(--spark-y))}}
 @media(prefers-reduced-motion:reduce){.gem-awarded{animation:none}.gem-celebration{display:none}}
+
+/* A single jewel glint after the seating effect has settled. */
+.gem-afterglint{fill:#fff;stroke:var(--gem-color);stroke-width:2;opacity:0;transform-box:view-box;transform-origin:var(--gem-origin);filter:drop-shadow(0 0 7px #fff) drop-shadow(0 0 16px var(--gem-color));animation:gem-afterglint var(--gem-glint-duration) ease-in-out var(--gem-glint-delay) both}
+@keyframes gem-afterglint{0%{opacity:0;transform:scale(.2) rotate(-12deg)}30%{opacity:1;transform:scale(1) rotate(0deg)}48%{opacity:.95;transform:scale(.85) rotate(4deg)}100%{opacity:0;transform:scale(.25) rotate(12deg)}}
+@media(prefers-reduced-motion:reduce){.gem-afterglint{animation:none;display:none}}

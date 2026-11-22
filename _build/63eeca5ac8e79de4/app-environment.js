@@ -1,0 +1,10 @@
+import {BUILD_ENVIRONMENT} from './environment-config.js?v=0.60.5';
+export const ENVIRONMENT_LABELS={beta:'BETA',local:'LOCALE',administrator:'ADMINISTRATOR'};
+export function resolveEnvironment(build,location={}){const local=['localhost','127.0.0.1','[::1]','::1'].includes(location.hostname)||!location.hostname;return build==='administrator'?(local?'administrator':'beta'):build==='local'?(local?'local':'beta'):'beta';}
+export const ENVIRONMENT=resolveEnvironment(BUILD_ENVIRONMENT,globalThis.location||{});
+export const ENVIRONMENT_LABEL=ENVIRONMENT_LABELS[ENVIRONMENT];
+export const ALLOW_LABS=ENVIRONMENT!=='beta';
+export const ALL_CONTENT_UNLOCKED=ENVIRONMENT==='administrator';
+export function assertEnvironmentProfile(data,environment=ENVIRONMENT){const marker=data?.shinkaEnvironment;if(marker&&marker!==environment)throw Error('Questo backup appartiene a '+(ENVIRONMENT_LABELS[marker]||'un altro ambiente')+'. Aprilo nello stesso ambiente per mantenere separati i dati.');if(environment==='beta'&&(data?.demoMax||data?.habitatDemo))throw Error('Un profilo di prova sbloccato non può essere importato nella Beta.');return data;}
+export function createEnvironmentStorage(storage,environment=ENVIRONMENT){const prefix='shinka-'+environment+':';return {getItem(key){const value=storage.getItem(prefix+key);if(value!==null||!['beta','local'].includes(environment)||key!=='shinka-lab-v1')return value;const legacy=storage.getItem(key);if(!legacy)return null;let parsed;try{parsed=JSON.parse(legacy);}catch{return legacy;}try{assertEnvironmentProfile(parsed,environment);}catch{return null;}storage.setItem(prefix+key,legacy);return legacy;},setItem:(key,value)=>storage.setItem(prefix+key,String(value)),removeItem:key=>storage.removeItem(prefix+key)};}
+export function environmentTools(){return !ALLOW_LABS?'':ENVIRONMENT==='administrator'?'<a href="administrator.html">Administrator · Pannello di controllo ↗</a>':'<a href="rank-lab.html">Locale · Laboratorio rank ↗</a> · <a href="http://127.0.0.1:4174/administrator.html">Administrator ↗</a>';}
