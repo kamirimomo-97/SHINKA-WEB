@@ -1,0 +1,62 @@
+/* Ten-second promotion: collect external energy 0–5.5s, burst, polish 7–9s, fade. */
+.rank-banner .rank-arrival-up{transform-origin:50% 50%;animation:rank-reveal 10000ms linear both}
+.rank-arrival-down{animation:rank-settle 650ms ease-out both}
+.rank-transition-fx{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:4;pointer-events:none}
+.rank-incoming-energy{fill:none;stroke:var(--rank-tone);stroke-width:5;stroke-linecap:round;animation:rank-energy-window 5500ms linear both;filter:drop-shadow(0 0 8px var(--rank-tone))}
+.rank-incoming-energy path{stroke-dasharray:38 962;stroke-dashoffset:1000;animation:rank-energy-flow var(--trail-time) var(--trail-delay) linear infinite}
+.rank-metal-sweep{animation:rank-metal-wave 2000ms 7000ms ease-in-out 3 alternate both}
+.rank-crest-burst{stroke-width:8;opacity:0;animation:rank-burst 1500ms 5500ms ease-out forwards;filter:drop-shadow(0 0 17px var(--rank-tone))}
+.rank-transition-label{position:absolute;left:20%;right:20%;bottom:-17px;z-index:5;pointer-events:none;text-align:center;font:10px Georgia,serif;letter-spacing:.1em;text-transform:uppercase;color:#f3e3ff;text-shadow:0 1px 5px #000,0 0 10px #b96aff;animation:rank-label 13000ms linear both;white-space:nowrap}
+.prime-coronation>img{transform-origin:center;animation:rank-arrival 10000ms linear both}
+@keyframes rank-arrival{0%{transform:scale(1);filter:brightness(1)}12%{transform:translateX(-.3px) scale(.98);filter:brightness(.85)}20%{transform:translateX(.4px) scale(.97);filter:brightness(1.1)}28%{transform:translateX(-.6px) scale(.955);filter:brightness(.8)}34%{transform:translateX(.7px) scale(.945);filter:brightness(1.2)}39%{transform:translateX(-.8px) scale(.93);filter:brightness(.85)}43%{transform:translate(.8px,-.3px) scale(.92);filter:brightness(1.3)}46%{transform:translate(-.9px,.3px) scale(.91);filter:brightness(.8)}48%{transform:translate(1px,-.4px) scale(.90);filter:brightness(1.4)}50%{transform:translate(-1px,.4px) scale(.89);filter:brightness(.85)}51.5%{transform:translate(1px,-.4px) scale(.885);filter:brightness(1.5)}53%{transform:translate(-1px,.4px) scale(.88);filter:brightness(.9)}54%{transform:translate(1px,-.4px) scale(.875);filter:brightness(1.65)}54.9%{transform:translate(-1px,.4px) scale(.87);filter:brightness(.95)}55.5%{transform:scale(1.08);filter:brightness(3.6) drop-shadow(0 0 22px #ecdfff)}61%{transform:scale(.99);filter:brightness(1.3)}70%{transform:scale(1);filter:brightness(1.1)}90%{filter:brightness(1.18)}100%{transform:scale(1);filter:brightness(1)}}
+@keyframes rank-energy-flow{0%{stroke-dashoffset:1000;opacity:0}15%{opacity:.8}85%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes rank-energy-window{0%{opacity:0}12%{opacity:.25}55%{opacity:.7}85%,99%{opacity:1}100%{opacity:0}}
+@keyframes rank-metal-wave{0%{transform:translateX(0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(3100px);opacity:0}}
+@keyframes rank-burst{0%{opacity:1;stroke-dasharray:2 100;stroke-dashoffset:0}20%{opacity:1;stroke-dasharray:30 100}100%{opacity:0;stroke-dasharray:2 100;stroke-dashoffset:-100}}
+@keyframes rank-label{0%,42.3%{opacity:0;transform:translateY(3px)}50%,92.3%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-2px)}}
+@keyframes rank-settle{0%{opacity:.5;filter:brightness(.7)}100%{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.rank-arrival-up,.rank-arrival-down,.prime-coronation>img{animation:none!important}.rank-transition-fx,.rank-transition-label{display:none}}
+
+
+.rank-banner .rank-charge-source,.prime-approved .rank-charge-source{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;transform-origin:center;animation:rank-arrival 10000ms linear both}
+@keyframes rank-reveal{0%,54.99%{opacity:0;visibility:hidden;transform:scale(.87);filter:brightness(1)}55%{opacity:1;visibility:visible;transform:scale(1.065);filter:brightness(2.7) drop-shadow(0 0 14px #ecdfff)}61%{transform:scale(.99);filter:brightness(1.3)}70%{transform:scale(1);filter:brightness(1.1)}90%{filter:brightness(1.18)}100%{opacity:1;visibility:visible;transform:scale(1);filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.rank-charge-source{display:none}}
+
+
+.rank-charge-source .gem-slot{animation:rank-gem-charge 700ms ease-in-out infinite}
+@keyframes rank-gem-charge{0%,100%{filter:brightness(1.1) drop-shadow(0 0 2px var(--charge-tone))}48%{filter:brightness(3) drop-shadow(0 0 19px var(--charge-tone))}}
+.rank-release-flash{opacity:0;animation:rank-impact-flash 650ms 5500ms ease-out forwards}
+@keyframes rank-impact-flash{0%{opacity:0}12%{opacity:.9}35%{opacity:.55}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.rank-charge-source .gem-slot{animation:none}.rank-release-flash{display:none}}
+
+/* The old frame and its incoming energy share the exact same transform. */
+.rank-charge-motion{position:absolute;inset:0;z-index:2;pointer-events:none;transform-origin:50% 50%;animation:rank-arrival 10000ms linear both}
+.rank-charge-motion .rank-charge-source{animation:none!important;transform:none!important}
+.rank-charge-energy{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:4;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.rank-charge-motion{display:none}}
+
+/* Release particles share the new frame transform, and stay invisible during charge. */
+.rank-release-motion{position:absolute;inset:0;z-index:2;pointer-events:none;transform-origin:50% 50%;animation:rank-reveal 10000ms linear both}
+.rank-release-motion .rank-arrival-up{animation:none!important}
+.rank-release-particles{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:4;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.rank-release-motion{animation:none}.rank-release-particles{display:none}}
+
+/* Promote the entire identity as one object, preserving all approved anchors. */
+.rank-charge-motion .rank-motion-visual{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;pointer-events:none}
+.rank-motion-visual .rank-copy{pointer-events:none}
+.rank-release-motion .rank-portrait,.rank-release-motion .rank-copy,.rank-release-motion .rank-head{pointer-events:none}
+
+.rank-release-motion.rank-release-down{animation:rank-settle 650ms ease-out both}.rank-release-down .rank-arrival-down{animation:none!important}
+
+/* PRIME has its own canvas: hide its complete identity until impact, then reveal it as one unit. */
+.prime-v2 .prime-release-motion{position:absolute;inset:0;width:100%;height:100%;z-index:1;transform-origin:50% 50%;animation:rank-reveal 10000ms linear both}
+.prime-v2 .prime-charge-motion{z-index:5}
+.prime-v2 .prime-charge-banner{position:absolute;left:0;top:50%;width:100%;height:auto;max-width:none;aspect-ratio:2172/450;margin:0;transform:translateY(-50%);pointer-events:none}
+@media(prefers-reduced-motion:reduce){.prime-v2 .prime-release-motion{animation:none}.prime-v2 .prime-charge-motion{display:none}}
+
+/* Seven ceremonial glints begin once the coronation burst has faded (7s). */
+.prime-gem-glint{opacity:0;transform-origin:0 0;animation:prime-gem-glint 850ms var(--glint-delay) ease-out both;filter:drop-shadow(0 0 9px var(--glint-tone))}
+.prime-gem-glow{fill:var(--glint-tone);filter:blur(12px);opacity:.8}
+.prime-gem-star{fill:#fff;stroke:var(--glint-tone);stroke-width:1.5}
+@keyframes prime-gem-glint{0%{opacity:0;transform:scale(.25) rotate(-20deg)}22%{opacity:1;transform:scale(1.2) rotate(0deg)}45%{opacity:.95;transform:scale(.85) rotate(12deg)}100%{opacity:0;transform:scale(.4) rotate(32deg)}}
+@media(prefers-reduced-motion:reduce){.prime-gem-glints{display:none}}

@@ -1,4 +1,4 @@
-import {BUILD_ENVIRONMENT} from './environment-config.js?v=0.60.6';
+import {BUILD_ENVIRONMENT} from './environment-config.js?v=0.60.7';
 export const ENVIRONMENT_LABELS={beta:'BETA',local:'LOCALE',administrator:'ADMINISTRATOR'};
 export function resolveEnvironment(build,location={}){const local=['localhost','127.0.0.1','[::1]','::1'].includes(location.hostname)||!location.hostname;return build==='administrator'?(local?'administrator':'beta'):build==='local'?(local?'local':'beta'):'beta';}
 export const ENVIRONMENT=resolveEnvironment(BUILD_ENVIRONMENT,globalThis.location||{});

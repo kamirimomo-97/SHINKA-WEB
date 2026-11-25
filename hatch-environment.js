@@ -1,5 +1,5 @@
-import {eggArt} from './eggs.js?v=0.60.6';
-import {creatureWindow} from './home-platform.js?v=0.60.6';
+import {eggArt} from './eggs.js?v=0.60.7';
+import {creatureWindow} from './home-platform.js?v=0.60.7';
 
 // One coordinate system and one terrain image through shell, flash and arrival.
 export function hatchEnvironment(key,content){return `<div class="hatch-environment" data-element="${key}"><img class="hatch-sanctuary" src="assets/hatching/${key}.png" alt="" aria-hidden="true" width="1024" height="1536" decoding="async" fetchpriority="high"><span class="hatch-scene-shade" aria-hidden="true"></span><img class="hatch-terrain" src="assets/habitats/${key}.png" alt="" aria-hidden="true" width="1774" height="887" decoding="async"><span class="hatch-contact" aria-hidden="true"></span>${content}</div>`;}

@@ -1,6 +1,7 @@
 export const RANKS=['Acciaio','Argento','Smeraldo','Zaffiro','Rubino','Oro','Diamante perlaceo'];
 export const ENTRY=[0,6,17,33,54,80,111];
 export const DECAY=[0,0,0,0,21,14,7];
+export const PRIME_RULES=Object.freeze({firstWeeks:8,reclaimWeeks:4,daysPerWeek:3});
 const DAY=86400000;
 export function addDate(date,n){return new Date(Date.parse(date+'T12:00:00Z')+n*DAY).toISOString().slice(0,10);}
 export function distance(a,b){return Math.round((Date.parse(b+'T12:00:00Z')-Date.parse(a+'T12:00:00Z'))/DAY);}
@@ -13,7 +14,7 @@ export function setRank(s,rank,gems){if(s.prime)losePrime(s,'Cambio manuale demo
 function losePrime(s,reason){s.prime=false;s.history.at(-1).end=s.date;s.rank=6;s.gems=5;s.partial=0;s.decayAt=s.date;s.eligibleSince=s.date;s.streak=0;event(s,`PRIME perso · ${reason}`);}
 export function weekDays(s,start=monday(s.date)){return s.days.filter(d=>d>=start&&d<addDate(start,7)).length;}
 export function rollingDays(s){return s.days.filter(d=>d>addDate(s.date,-7)&&d<=s.date).length;}
-function closeWeek(s){const start=addDate(s.date,-7),end=addDate(s.date,-1);const eligible=s.eligibleSince!==null;const count=s.days.filter(d=>d>=start&&d<=end&&(s.prime||d>s.eligibleSince)).length;const valid=count>=3;s.weeks.push({start,end,count,valid,eligible});if(s.prime){if(!valid){losePrime(s,'settimana conclusa con meno di 3 giorni validi');return true;}s.history.at(-1).weeks=(s.history.at(-1).weeks||0)+1;event(s,'PRIME mantenuto · settimana valida');return false;}if(!eligible)return false;s.streak=valid?s.streak+1:0;event(s,`Settimana ${start} · ${count} giorni · serie ${s.streak}`);if(s.streak>=(s.history.length?4:8)){s.prime=true;s.history.push({start:s.date,end:null,weeks:0});event(s,'Incoronazione SHINKA PRIME');}return false;}
+function closeWeek(s){const start=addDate(s.date,-7),end=addDate(s.date,-1);const eligible=s.eligibleSince!==null;const count=s.days.filter(d=>d>=start&&d<=end&&(s.prime||d>s.eligibleSince)).length;const valid=count>=PRIME_RULES.daysPerWeek;s.weeks.push({start,end,count,valid,eligible});if(s.prime){if(!valid){losePrime(s,'settimana conclusa con meno di 3 giorni validi');return true;}s.history.at(-1).weeks=(s.history.at(-1).weeks||0)+1;event(s,'PRIME mantenuto · settimana valida');return false;}if(!eligible)return false;s.streak=valid?s.streak+1:0;event(s,`Settimana ${start} · ${count} giorni · serie ${s.streak}`);if(s.streak>=(s.history.length?PRIME_RULES.reclaimWeeks:PRIME_RULES.firstWeeks)){s.prime=true;s.history.push({start:s.date,end:null,weeks:0});event(s,'Incoronazione SHINKA PRIME');}return false;}
 export function workout(s){if(s.days.includes(s.date))return false;s.days.push(s.date);s.level++;s.decayAt=s.date;if(!s.prime){if(s.gems===5&&s.rank<6){promote(s); }else if(s.gems<5){s.partial++;if(s.partial>=s.rank+1){s.partial=0;s.gems++;event(s,'Gemma conquistata');}}}eligibility(s);event(s,'Allenamento valido');return true;}
 // Preview promotion consumes the next distinct training day, matching the official entry levels.
 export function promote(s){if(s.prime||s.gems!==5||s.rank===6)return false;s.rank++;s.gems=0;s.partial=0;s.decayAt=s.date;eligibility(s);event(s,`Promozione a ${RANKS[s.rank]}`);return true;}

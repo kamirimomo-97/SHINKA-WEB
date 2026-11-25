@@ -1,6 +1,6 @@
-import {TITLES,TITLE_BY_ID,TITLE_CATEGORIES,TITLE_RARITIES} from './title-catalog.js?v=0.60.6';
-import {evaluateTitles,equipTitle} from './titles-engine.js?v=0.60.6';
-import {equippedTitle} from './title-state.js?v=0.60.6';
+import {TITLES,TITLE_BY_ID,TITLE_CATEGORIES,TITLE_RARITIES} from './title-catalog.js?v=0.60.7';
+import {evaluateTitles,equipTitle} from './titles-engine.js?v=0.60.7';
+import {equippedTitle} from './title-state.js?v=0.60.7';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function publicTitle(title,owned){return title.isSecret&&!owned?{id:title.id,name:'???',icon:'✦',isSecret:true,hidden:true}:title;}
 export function titleSummary(db,{sandbox=false}={}){const title=equippedTitle(db,{sandbox}),count=sandbox?80:Object.keys(db.titles?.unlocked||{}).length;return '<section class="card titles-summary"><div><small>I TUOI TRAGUARDI</small><h2 class="title-'+title.rarity+'">'+esc(title.icon)+' '+esc(title.name)+'</h2><p>'+count+' / 80 titoli · '+Math.round(count/80*100)+'%'+(sandbox?' · sblocchi di prova':'')+'</p></div><button data-act="titles-open">Collezione titoli →</button></section>';}

@@ -1,32 +1,35 @@
-import {TRAINING_RULE_VERSION,isValidTraining,isProgressionTraining} from './training-validity.js?v=0.60.6';
-import {loadProtectedProfile,restoreProtectedProfile} from './profile-safety.js?v=0.60.6';
-import {setupPwaUpdates} from './pwa-updates.js?v=0.60.6';
-import {syncTitles} from './titles-engine.js?v=0.60.6';
-import {titleSummary,titlesCollection,titleRewards,setupTitles} from './titles-ui.js?v=0.60.6';
+import {rankConstancyView,setupRankConstancy} from './rank-constancy.js?v=0.60.7';
+import {rankConstancyModel} from './rank-constancy-model.js?v=0.60.7';
+const rankConstancyController=setupRankConstancy({getModel:()=>rankConstancyModel(db)});
+import {TRAINING_RULE_VERSION,isValidTraining,isProgressionTraining} from './training-validity.js?v=0.60.7';
+import {loadProtectedProfile,restoreProtectedProfile} from './profile-safety.js?v=0.60.7';
+import {setupPwaUpdates} from './pwa-updates.js?v=0.60.7';
+import {syncTitles} from './titles-engine.js?v=0.60.7';
+import {titleSummary,titlesCollection,titleRewards,setupTitles} from './titles-ui.js?v=0.60.7';
 const titleFilters={category:'all',rarity:'all',status:'all'};let titleEvaluation;
-import {ENVIRONMENT,ALLOW_LABS,createEnvironmentStorage,assertEnvironmentProfile,environmentTools} from './app-environment.js?v=0.60.6';
-const administrator=ENVIRONMENT==='administrator'?await import('./administrator-tools.js?v=0.60.6'):null;
-import {activeRank,syncRankProgress} from './rank-progress.js?v=0.60.6';
-import {localDate} from './rank-system.js?v=0.60.6';
-import {createId} from './local-id.js?v=0.60.6';
-import {createLiveRankEffects} from './live-rank-effects.js?v=0.60.6';
+import {ENVIRONMENT,ALLOW_LABS,createEnvironmentStorage,assertEnvironmentProfile,environmentTools} from './app-environment.js?v=0.60.7';
+const administrator=ENVIRONMENT==='administrator'?await import('./administrator-tools.js?v=0.60.7'):null;
+import {activeRank,syncRankProgress} from './rank-progress.js?v=0.60.7';
+import {localDate} from './rank-system.js?v=0.60.7';
+import {createId} from './local-id.js?v=0.60.7';
+import {createLiveRankEffects} from './live-rank-effects.js?v=0.60.7';
 const liveRankEffects=createLiveRankEffects();
-import {createGemTracker} from './rank-gem-effects.js?v=0.60.6';
+import {createGemTracker} from './rank-gem-effects.js?v=0.60.7';
 
 const updateRankGems=createGemTracker();
-import {setupTrainerBadges} from './trainer-badge.js?v=0.60.6';
-import {rewardNotice} from './reward-status.js?v=0.60.6';
-import {hatchEnvironment,hatchShell,hatchCompanion} from './hatch-environment.js?v=0.60.6';
-import {newHatch,tapHatch,canSkipHatch,finishHatch,FINALE_DURATION} from './hatching.js?v=0.60.6';
-import {eggArt,eggElements} from './eggs.js?v=0.60.6';
-import {starterKeys,migrateProgression,playerLevel,weekRewards,claimWeek,canObtain,weekKey} from './progression.js?v=0.60.6';
-import {avatarProfile,avatarArt,setupWardrobe} from './wardrobe.js?v=0.60.6';
-import {seal,updateNavigation,applyImmersive,launchScreen} from './immersive.js?v=0.60.6';
-import {hydrateAvatars} from './avatar-appearance.js?v=0.60.6';
-import {creatureArt,framedCard,migrateSoul,workoutCompanion,celebrationView} from './soul.js?v=0.60.6';
-import {setupJourney,migrateJourney,homeView,sanctuary,arenaView,planOrganization,scheduleFields,loadFields,bodyProgress} from './journey.js?v=0.60.6';
-import {TYPES,metrics,strength,rewards,validate,timerSeconds,adjustTimer} from './core.js?v=0.60.6';
-import {configureEnhancements,migrate,dashboard,progressPage,coachPage,profileSettings,editorTools,exerciseTools,duplicateButton,tickElapsed,libraryView,exercisePicker} from './enhancements.js?v=0.60.6';
+import {setupTrainerBadges} from './trainer-badge.js?v=0.60.7';
+import {rewardNotice} from './reward-status.js?v=0.60.7';
+import {hatchEnvironment,hatchShell,hatchCompanion} from './hatch-environment.js?v=0.60.7';
+import {newHatch,tapHatch,canSkipHatch,finishHatch,FINALE_DURATION} from './hatching.js?v=0.60.7';
+import {eggArt,eggElements} from './eggs.js?v=0.60.7';
+import {starterKeys,migrateProgression,playerLevel,weekRewards,claimWeek,canObtain,weekKey} from './progression.js?v=0.60.7';
+import {avatarProfile,avatarArt,setupWardrobe} from './wardrobe.js?v=0.60.7';
+import {seal,updateNavigation,applyImmersive,launchScreen} from './immersive.js?v=0.60.7';
+import {hydrateAvatars} from './avatar-appearance.js?v=0.60.7';
+import {creatureArt,framedCard,migrateSoul,workoutCompanion,celebrationView} from './soul.js?v=0.60.7';
+import {setupJourney,migrateJourney,homeView,sanctuary,arenaView,planOrganization,scheduleFields,loadFields,bodyProgress} from './journey.js?v=0.60.7';
+import {TYPES,metrics,strength,rewards,validate,timerSeconds,adjustTimer} from './core.js?v=0.60.7';
+import {configureEnhancements,migrate,dashboard,progressPage,coachPage,profileSettings,editorTools,exerciseTools,duplicateButton,tickElapsed,libraryView,exercisePicker} from './enhancements.js?v=0.60.7';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),uid=()=>createId(),clone=x=>JSON.parse(JSON.stringify(x));
 const firstAccessPreview=ALLOW_LABS&&new URLSearchParams(location.search||'').get('primo-accesso')==='1';
 const visualPreview=ALLOW_LABS&&new URLSearchParams(location.search||'').get('demo')==='immersive';
@@ -60,6 +63,7 @@ const fmt=n=>new Intl.NumberFormat('it-IT',{maximumFractionDigits:1}).format(n),
 let rankSyncErrorShown=false;
 function render(){if(recoveryBlocked){$('#nav').innerHTML='';$('#app').innerHTML='<section class="card"><h1>Archivio protetto</h1><p>Non è stato possibile leggere il salvataggio. I dati esistenti non vengono sostituiti. Scarica la copia originale prima di ripristinare un backup valido.</p><button data-act="recovery-export">Scarica archivio originale</button><label>Ripristina backup <input id="import-file" type="file" accept="application/json,.json"></label></section>';return;}try{const result=syncTitles(db,labStorage,Date.now(),{sandbox:!!(adminProfile&&administrator.allTitlesUnlocked(db)),source:adminProfile?administrator.titleSource(db):db,notify:!!(adminProfile&&db.demoMax?.titleScenario&&db.demoMax.titleScenario!=='none')});titleEvaluation=result.evaluation;}catch{if(!rankSyncErrorShown){rankSyncErrorShown=true;alert('Impossibile salvare i titoli. Gli allenamenti e il profilo precedente sono conservati. Esporta un backup e verifica lo spazio disponibile.');}}const beforeRank=activeRank(db,playerLevel(db));try{const rankChanged=syncRankProgress(db,labStorage,Date.now(),preRankMigrationRaw);const afterRank=activeRank(db,playerLevel(db));if(rankChanged&&beforeRank.prime&&!afterRank.prime)toast('SHINKA PRIME concluso: torni a Diamante perlaceo con 5 gemme. Lo storico della conquista resta conservato.');if(rankChanged&&(afterRank.rank<beforeRank.rank||(afterRank.rank===beforeRank.rank&&afterRank.gems<beforeRank.gems)))toast('Inattività: rank aggiornato. Il livello storico resta '+playerLevel(db)+'.');}catch{if(!rankSyncErrorShown){rankSyncErrorShown=true;alert('Impossibile salvare la progressione rank. I dati esistenti sono conservati: libera spazio o esporta un backup.');}}const oldExercises=[...document.querySelectorAll('[data-exercise-fold]')],openExercises=oldExercises.filter(e=>e.open).map(e=>e.dataset.exerciseFold);const openProgress=[...document.querySelectorAll('[data-progress-fold][open]')].map(e=>e.dataset.progressFold);if(db.journeyV2&&!db.journeyV2.onboarded&&typeof document.createElement==='function'){renderWelcome();return;}page=location.hash.slice(1)||'home';applyImmersive(page);updateNavigation($('#nav'),page);let r=rewards(db.sessions),stage=r.xp>=1500?2:r.xp>=500?1:0,f=families[db.starter];let html='';
 if(page==='home')html=hatchPreview?hatchDemoView():homeView(db,creature,families,planCard);
+if(page==='rank-constancy')html=rankConstancyView(rankConstancyModel(db),{demo:ENVIRONMENT==='administrator'||!!db.demoMax});
 if(page==='plans')html=`<div class="row wrap"><h1>Le tue schede</h1>${btn('✦ Scheda smart','smart-open')} ${btn('＋ Nuova scheda','new-plan','primary')}</div>${db.plans.length?db.plans.map(p=>planCard(p,true)).join(''):'<div class="card empty"><h2>Nessuna scheda</h2></div>'}<details class="card compact-section"><summary>Libreria esercizi · cerca e aggiungi</summary><div class="row section"><h2>Libreria esercizi</h2>${btn('＋ Personalizzato','custom')}</div><input aria-label="Cerca esercizio" id="search" placeholder="Cerca un esercizio…" value="${esc(filter)}"><div id="library">${libraryHtml()}</div></details>`;
 if(page==='editor'&&draft)html=editor(false);
 if(page==='workout')html=db.active?workoutCompanion(db)+editor(true):'<h1>Nessun allenamento attivo</h1><a href="#plans">Scegli una scheda →</a>';
@@ -73,7 +77,7 @@ if(page==='history')html=titleRewards(db)+html;
 if(page==='history'&&completion)html=celebrationView(db,completion)+html;
 if(page==='progress')html+=bodyProgress(db);
 if(page==='plans')html='<div class="row wrap"><a class="accent" href="#history">◷ Storico completo →</a><a class="accent" href="#coach">Shinka Coach →</a></div>'+html;
-if(page==='home'&&!hatchPreview)html=playerPanel()+(adminProfile?administrator.administratorControls(db):'')+rewardNotice(db)+html;if(maxPreview&&!habitatPreview&&!hatchPreview)html='<aside class="card"><strong>DEMO MAX · Giocatore 120 · Shinkaryu 100</strong><p>Anteprima temporanea: tutte le forme e i legami al massimo. Livello 100 dei mostri usato solo come limite dimostrativo. Nessun allenamento inventato nello storico. I tuoi dati reali restano separati.</p><a href="'+location.pathname+'#home">Esci dalla demo →</a></aside>'+html;$('#app').innerHTML=html||'<h1>SHINKA</h1><a href="#home">Torna alla home</a>';if(['editor','workout'].includes(page)&&oldExercises.length)for(const fold of document.querySelectorAll('[data-exercise-fold]'))fold.open=openExercises.includes(fold.dataset.exerciseFold);if(page==='progress'&&openProgress.length)for(const fold of document.querySelectorAll('[data-progress-fold]'))fold.open=openProgress.includes(fold.dataset.progressFold);hydrateAvatars($('#app'));updateRankGems($('#app'),activeRank(db,playerLevel(db)));liveRankEffects.update($('#app'),activeRank(db,playerLevel(db)));tick();}
+if(page==='home'&&!hatchPreview)html=playerPanel()+(adminProfile?administrator.administratorControls(db):'')+rewardNotice(db)+html;if(maxPreview&&!habitatPreview&&!hatchPreview)html='<aside class="card"><strong>DEMO MAX · Giocatore 120 · Shinkaryu 100</strong><p>Anteprima temporanea: tutte le forme e i legami al massimo. Livello 100 dei mostri usato solo come limite dimostrativo. Nessun allenamento inventato nello storico. I tuoi dati reali restano separati.</p><a href="'+location.pathname+'#home">Esci dalla demo →</a></aside>'+html;$('#app').innerHTML=html||'<h1>SHINKA</h1><a href="#home">Torna alla home</a>';if(['editor','workout'].includes(page)&&oldExercises.length)for(const fold of document.querySelectorAll('[data-exercise-fold]'))fold.open=openExercises.includes(fold.dataset.exerciseFold);if(page==='progress'&&openProgress.length)for(const fold of document.querySelectorAll('[data-progress-fold]'))fold.open=openProgress.includes(fold.dataset.progressFold);hydrateAvatars($('#app'));updateRankGems($('#app'),activeRank(db,playerLevel(db)));liveRankEffects.update($('#app'),activeRank(db,playerLevel(db)));tick();rankConstancyController.refresh();}
 function planCard(p,compact=false){const title=`<small>${p.name.startsWith('ESEMPIO')?'PROGRAMMA DIMOSTRATIVO':'SCHEDA PERSONALE'}</small><h3>${esc(p.name)}</h3><small>${p.exercises.length} esercizi · ${p.exercises.reduce((a,e)=>a+e.sets.length,0)} serie previste</small>`,actions=`<div class="row plan-actions">${duplicateButton(p)}${btn('Modifica','edit','quiet',`data-id="${p.id}"`)}${btn('Inizia →','start','primary',`data-id="${p.id}"`)}</div>`;return compact?`<details class="card plan-summary"><summary><span>${title}</span><span class="plan-chevron" aria-hidden="true">⌄</span></summary><p>${planOrganization(p,db)}</p><div class="plan-exercise-preview">${p.exercises.map(e=>'<span>'+esc(e.name)+'</span>').join('')}</div>${actions}</details>`:`<div class="card row wrap"><div>${title}<p>${planOrganization(p,db)}</p></div>${actions}</div>`}
 
 function libraryHtml(){return libraryView(db,filter)}
@@ -192,3 +196,5 @@ window.addEventListener('focus',()=>render());let lastRankCalendarDate=localDate
 if(adminProfile)administrator.setupAdministrator({getDb:()=>db,save,render,toast});
 
 setupTitles({getDb:()=>db,save,render,toast,filters:titleFilters,sandbox:()=>!!(adminProfile&&administrator.allTitlesUnlocked(db))});
+
+document.addEventListener('click',event=>{if(event.target.closest('[data-act]')?.dataset.act==='rank-constancy-open')location.hash='rank-constancy';});
