@@ -1,4 +1,4 @@
-import './rank-title-fit.js?v=0.60.7';
+import './rank-title-fit.js?v=0.60.8';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let sequence=0;
 function primeLivingGlints(id){

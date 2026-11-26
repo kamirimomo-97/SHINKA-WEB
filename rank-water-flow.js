@@ -1,5 +1,5 @@
 // GPU texture advection inside water-only masks. No particles or drawn ripple shapes.
-import {WATER_OUTLINES as outlines,waterConfidence} from './rank-water-mask.js?v=0.60.7';
+import {WATER_OUTLINES,MOBILE_WATER_OUTLINES,REFERENCE_WATER_OUTLINES,waterConfidence} from './rank-water-mask.js?v=0.60.8';
 const vertex=`attribute vec2 position;varying vec2 uv;void main(){uv=vec2((position.x+1.0)*.5,(1.0-position.y)*.5);gl_Position=vec4(position,0.,1.);}`;
 const fragment=`precision mediump float;
 varying vec2 uv;uniform sampler2D picture;uniform sampler2D waterMask;uniform vec2 sourceSize;uniform vec2 sceneSize;uniform vec2 origin;uniform float time;
@@ -36,7 +36,7 @@ export function startWaterFlow(canvas){let disposed=false,raf=0,gl=null,frameCou
   const buffer=gl.createBuffer();resources.push({kind:'buffer',value:buffer});gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);const pos=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
   const width=Number(canvas.dataset.sceneWidth),height=Number(canvas.dataset.sceneHeight),ox=Number(canvas.dataset.originX),oy=Number(canvas.dataset.originY);
   canvas.width=Math.min(640,Math.max(320,Math.round(canvas.parentElement.clientWidth*1.4)));canvas.height=Math.round(canvas.width*height/width);gl.viewport(0,0,canvas.width,canvas.height);
-  const mask=document.createElement('canvas');mask.width=canvas.width;mask.height=canvas.height;const context=mask.getContext('2d');context.scale(canvas.width/width,canvas.height/height);context.translate(-ox,-oy);context.fillStyle='white';for(const path of outlines)context.fill(new Path2D(path));
+  const mask=document.createElement('canvas');mask.width=canvas.width;mask.height=canvas.height;const context=mask.getContext('2d');context.scale(canvas.width/width,canvas.height/height);context.translate(-ox,-oy);context.fillStyle='white';for(const path of (canvas.dataset.waterLayout==='reference'?REFERENCE_WATER_OUTLINES:canvas.dataset.waterLayout==='mobile'?MOBILE_WATER_OUTLINES:WATER_OUTLINES))context.fill(new Path2D(path));
   const texture=(unit,image)=>{const tex=gl.createTexture();resources.push({kind:'texture',value:tex});gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);};
   gl.uniform1i(gl.getUniformLocation(program,'waterMask'),1);gl.uniform2f(gl.getUniformLocation(program,'sceneSize'),width,height);gl.uniform2f(gl.getUniformLocation(program,'origin'),ox,oy);resources.time=gl.getUniformLocation(program,'time');
   const image=new Image();image.onload=()=>{if(disposed)return;try{

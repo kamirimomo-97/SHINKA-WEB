@@ -1,6 +1,6 @@
-import {avatarColorPalettes,normalizeAvatar,normalizeAppearance as appearanceDefaults,avatarAsset,avatarModuleFiles} from './avatar-catalog.js?v=0.60.7';
-import {avatarGeometry} from './avatar-geometry.js?v=0.60.7';
-import {avatarFit} from './avatar-fit.js?v=0.60.7';
+import {avatarColorPalettes,normalizeAvatar,normalizeAppearance as appearanceDefaults,avatarAsset,avatarModuleFiles} from './avatar-catalog.js?v=0.60.8';
+import {avatarGeometry} from './avatar-geometry.js?v=0.60.8';
+import {avatarFit} from './avatar-fit.js?v=0.60.8';
 
 export const appearancePalettes=avatarColorPalettes;
 export function normalizeAppearance(avatar={}){return appearanceDefaults(avatar);}

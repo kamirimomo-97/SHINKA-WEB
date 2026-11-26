@@ -77,3 +77,42 @@ html:has(body[data-page="rank-constancy"]){overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){.rc-dialog[open]{animation:none}}
 html:has(body[data-page="rank-constancy"]){scrollbar-gutter:auto!important}.rc-screen{width:100vw}.rc-environment-fill{position:absolute;left:0;width:100%;height:60%;z-index:0;pointer-events:none;filter:brightness(.85)}.rc-sky-fill{top:0}.rc-ground-fill{bottom:0}.rc-world{mask-image:linear-gradient(180deg,transparent,#000 3%,#000 97%,transparent)}
 .rc-dialog::backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+/* Portrait composition: the actual staircase fills the viewport, without filler bands.
+   Only the environment adapts to viewport height; original emblems retain their ratio. */
+.rc-world{aspect-ratio:auto;mask-image:none}.rc-background{object-fit:fill}.rc-mobile-emblems{position:absolute;inset:0;z-index:2;pointer-events:none}.rc-original-emblem{position:absolute;display:block;height:auto;overflow:visible;transform:translate(-50%,-100%);filter:drop-shadow(0 2px 3px #160a3160);pointer-events:none}
+.rc-summary{width:min(46vw,220px);min-height:52px!important;padding:8px 10px!important}.rc-summary strong{font-size:clamp(13px,3.6vw,19px)}
+@media(min-aspect-ratio:3/4){.rc-world{max-width:calc(100dvh * .6)}.rc-mountain{background:#141024}}
+
+/* Approved ornamental title: transparent glow and opaque violet enamel.
+   The artwork reserves only the space needed above PRIME; original crest sizes are retained. */
+.rc-header{display:block!important;min-height:0!important;height:0!important;padding:0!important;background:none!important;overflow:visible!important}
+.rc-header .rc-back{position:absolute;left:max(10px,env(safe-area-inset-left,0px));top:max(8px,env(safe-area-inset-top,0px),var(--rc-safe-top,0px));width:40px;height:40px;z-index:2;background:#201331a3}
+.rc-header>.rc-brand{position:absolute;left:50%;top:max(6px,env(safe-area-inset-top,0px),var(--rc-safe-top,0px));transform:translateX(-50%);width:108px;height:31px;max-height:none;object-fit:contain}
+.rc-header>.rc-title{position:absolute;left:0;right:0;top:calc(max(6px,env(safe-area-inset-top,0px),var(--rc-safe-top,0px)) + 33px);margin:0!important;padding:0;line-height:0;text-shadow:none;text-align:center}
+.rc-title-art{display:block;width:min(calc(100% - 16px),410px);height:auto;max-height:none;margin:0 auto;object-fit:contain;filter:none}
+.rc-mountain{display:block;background:radial-gradient(ellipse at 50% 0,#543276,#262748 45%,#141024 75%)}
+.rc-world{margin:0 auto}
+@media(min-aspect-ratio:3/4){.rc-header>.rc-title{left:50%;right:auto;width:min(100%,calc(100dvh * .6));transform:translateX(-50%)}}
+
+/* Reference composition: one continuous illustration, including sky, logo and title.
+   The camera covers the viewport uniformly; neither a title band nor a compressed map is added. */
+.rc-header-integrated{background:none!important;pointer-events:none}
+.rc-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+.rc-mountain{background:#18274b}
+.rc-world{position:absolute;margin:0;max-width:none!important;aspect-ratio:var(--scene-ratio);mask-image:none}
+
+/* Keep the current-rank shortcut below the Silver landing on short phones. */
+.rc-summary{min-height:44px!important;padding:6px 8px!important;gap:3px}.rc-summary small{display:none!important}
+
+/* Approved complete PRIME image: only the week number changes. */
+.rc-official-prime{position:absolute;inset:0;pointer-events:none;z-index:2}.rc-prime-crest{position:absolute;height:auto;pointer-events:none}.rc-prime-crest>svg{display:block;width:100%;height:100%;overflow:visible}
+
+/* Approved lock treatment: only unreached ranks dim; the inspected rank is revealed. */
+.rc-rank-locks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.rc-rank-dim{fill:#04020a;opacity:.68;transition:opacity .22s ease;pointer-events:none}
+.rc-rank-dim.rc-revealed{opacity:0}
+.rc-official-prime{transition:filter .22s ease}.rc-official-prime.rc-rank-obscured{filter:brightness(.32)}.rc-official-prime.rc-rank-revealed{filter:none}
+.rc-world{transition:transform .28s ease;will-change:transform}
+.rc-dialog::backdrop{background:transparent}
+@media(prefers-reduced-motion:reduce){.rc-rank-dim,.rc-official-prime,.rc-world{transition:none}}

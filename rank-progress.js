@@ -1,10 +1,10 @@
-import {isProgressionTraining} from './training-validity.js?v=0.60.7';
-import {ENVIRONMENT} from './app-environment.js?v=0.60.7';
-import {createDemo,advanceDays,workout} from './rank-system.js?v=0.60.7';
-import {rankForLevel} from './rank-banner.js?v=0.60.7';
-import {playerLevel} from './progression.js?v=0.60.7';
-import {localDate,addDate,distance,DECAY} from './rank-system.js?v=0.60.7';
-import {metrics} from './core.js?v=0.60.7';
+import {isProgressionTraining} from './training-validity.js?v=0.60.8';
+import {ENVIRONMENT} from './app-environment.js?v=0.60.8';
+import {createDemo,advanceDays,workout} from './rank-system.js?v=0.60.8';
+import {rankForLevel} from './rank-banner.js?v=0.60.8';
+import {playerLevel} from './progression.js?v=0.60.8';
+import {localDate,addDate,distance,DECAY} from './rank-system.js?v=0.60.8';
+import {metrics} from './core.js?v=0.60.8';
 export const PRIME_MIGRATION_BACKUP='shinka-rank-before-prime-v1';
 export const RANK_MIGRATION_BACKUP='shinka-rank-before-rules-v1';
 export function trainingDates(db,timeZone,now=Date.now()){return [...new Set((db.sessions||[]).filter(s=>Number.isFinite(s.finished)&&isProgressionTraining(s,now)).map(s=>localDate(s.finished,timeZone)))].sort();}
