@@ -1,4 +1,4 @@
-import {TYPES,comparisonKey} from './core.js?v=0.60.10';
+import {TYPES,comparisonKey} from './core.js?v=0.60.11';
 import {muscleProfile,exerciseEquipment,exerciseVideo,lastCompatible,previousSet,resolveCursor,updateActive,completeActiveSet,restoreActiveSet,activeCounts,timerSeconds,validSetValues} from './workout-local-model.js';
 import {anatomy} from './workout-local-anatomy.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

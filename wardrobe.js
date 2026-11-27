@@ -1,7 +1,7 @@
-import {trainerBadge} from './trainer-badge.js?v=0.60.10';
-import {galleryArt,setupGallery} from './avatar-gallery.js?v=0.60.10';
-import {hydrateAvatars} from './avatar-appearance.js?v=0.60.10';
-import {avatarModels,avatarParts,avatarPresets,avatarColorPalettes,hairStyles,normalizeAvatar,currentPreset,avatarAsset,garmentFile} from './avatar-catalog.js?v=0.60.10';
+import {trainerBadge} from './trainer-badge.js?v=0.60.11';
+import {galleryArt,setupGallery} from './avatar-gallery.js?v=0.60.11';
+import {hydrateAvatars} from './avatar-appearance.js?v=0.60.11';
+import {avatarModels,avatarParts,avatarPresets,avatarColorPalettes,hairStyles,normalizeAvatar,currentPreset,avatarAsset,garmentFile} from './avatar-catalog.js?v=0.60.11';
 
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const emptyImage='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';

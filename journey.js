@@ -1,10 +1,10 @@
-import {createId} from './local-id.js?v=0.60.10';
-import {dumbbell,weekConstellation} from './fantasy-chrome.js?v=0.60.10';
-import {eggArt} from './eggs.js?v=0.60.10';
-import {canObtain,starterKeys} from './progression.js?v=0.60.10';
-import {lineages,companionHero,companionProgress,elementIcon,framedCard} from './soul.js?v=0.60.10';
-import {metrics,rewards,periodSessions,localDay,comparisonKey} from './core.js?v=0.60.10';
-import {coachPage,progressPage,profileSettings,spark} from './enhancements.js?v=0.60.10';
+import {createId} from './local-id.js?v=0.60.11';
+import {dumbbell,weekConstellation} from './fantasy-chrome.js?v=0.60.11';
+import {eggArt} from './eggs.js?v=0.60.11';
+import {canObtain,starterKeys} from './progression.js?v=0.60.11';
+import {lineages,companionHero,companionProgress,elementIcon,framedCard} from './soul.js?v=0.60.11';
+import {metrics,rewards,periodSessions,localDay,comparisonKey} from './core.js?v=0.60.11';
+import {coachPage,progressPage,profileSettings,spark} from './enhancements.js?v=0.60.11';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=n=>new Intl.NumberFormat('it-IT',{maximumFractionDigits:1}).format(n),clone=x=>structuredClone(x);
 const button=(t,a,extra='',cls='quiet')=>`<button class="${cls}" data-act="${a}" ${extra}>${t}</button>`;
 const widgetNames={today:'Scheda del giorno',companion:'Shinkaryu attivo',week:'Progressi settimanali',goals:'Obiettivi',coach:'Shinka Coach'};

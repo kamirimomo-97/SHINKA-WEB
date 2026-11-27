@@ -1,5 +1,5 @@
 // GPU texture advection inside water-only masks. No particles or drawn ripple shapes.
-import {WATER_OUTLINES,MOBILE_WATER_OUTLINES,REFERENCE_WATER_OUTLINES,waterConfidence} from './rank-water-mask.js?v=0.60.10';
+import {WATER_OUTLINES,MOBILE_WATER_OUTLINES,REFERENCE_WATER_OUTLINES,waterConfidence} from './rank-water-mask.js?v=0.60.11';
 const vertex=`attribute vec2 position;varying vec2 uv;void main(){uv=vec2((position.x+1.0)*.5,(1.0-position.y)*.5);gl_Position=vec4(position,0.,1.);}`;
 const fragment=`precision mediump float;
 varying vec2 uv;uniform sampler2D picture;uniform sampler2D waterMask;uniform vec2 sourceSize;uniform vec2 sceneSize;uniform vec2 origin;uniform float time;

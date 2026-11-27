@@ -1,5 +1,5 @@
-import {comparisonKey,timerSeconds} from './core.js?v=0.60.10';
-import {normalizeExerciseText} from './title-exercises.js?v=0.60.10';
+import {comparisonKey,timerSeconds} from './core.js?v=0.60.11';
+import {normalizeExerciseText} from './title-exercises.js?v=0.60.11';
 const rules=[
  [['Panca piana','Panca piana bilanciere','Bench press','Barbell bench press','Panca inclinata manubri'],['chest'],['triceps','deltoids'],'Pettorali','Tricipiti e deltoidi','front'],
  [['Lat machine','Lat pulldown','Trazioni','Trazioni assistite','Pull up','Chin up'],['upper-back'],['biceps'],'Dorsali','Bicipiti','back'],

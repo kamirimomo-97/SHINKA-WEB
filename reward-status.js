@@ -1,6 +1,6 @@
-import {isProgressionTraining} from './training-validity.js?v=0.60.10';
-import {weekKey,weekRewards,playerLevel} from './progression.js?v=0.60.10';
-import {metrics} from './core.js?v=0.60.10';
+import {isProgressionTraining} from './training-validity.js?v=0.60.11';
+import {weekKey,weekRewards,playerLevel} from './progression.js?v=0.60.11';
+import {metrics} from './core.js?v=0.60.11';
 
 export function weeklyStatus(db,now=Date.now()){
  if(!db.journeyV2)return null;

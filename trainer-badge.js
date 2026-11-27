@@ -1,10 +1,10 @@
-import {equippedTitle} from './title-state.js?v=0.60.10';
-import {ALL_CONTENT_UNLOCKED} from './app-environment.js?v=0.60.10';
-import {ALLOW_LABS} from './app-environment.js?v=0.60.10';
-import {activeRank} from './rank-progress.js?v=0.60.10';
-import {rankBanner,galleryPortrait} from './rank-banner.js?v=0.60.10';
-import {galleryAsset,playableGallery} from './avatar-gallery.js?v=0.60.10';
-import {playerLevel} from './progression.js?v=0.60.10';
+import {equippedTitle} from './title-state.js?v=0.60.11';
+import {ALL_CONTENT_UNLOCKED} from './app-environment.js?v=0.60.11';
+import {ALLOW_LABS} from './app-environment.js?v=0.60.11';
+import {activeRank} from './rank-progress.js?v=0.60.11';
+import {rankBanner,galleryPortrait} from './rank-banner.js?v=0.60.11';
+import {galleryAsset,playableGallery} from './avatar-gallery.js?v=0.60.11';
+import {playerLevel} from './progression.js?v=0.60.11';
 export const trainerRanks=[{level:0,name:'Esordiente'},{level:10,name:'Allenatore'},{level:30,name:'Veterano'},{level:60,name:'Maestro'},{level:120,name:'Custode'},{level:240,name:'Leggenda'}];
 export const badgeStyles=[{id:'origin',name:'Origine',level:0},{id:'silver',name:'Argento',level:10},{id:'aurora',name:'Aurora',level:30},{id:'obsidian',name:'Ossidiana',level:60}];
 export function trainerRank(level){return [...trainerRanks].reverse().find(r=>level>=r.level)||trainerRanks[0];}
