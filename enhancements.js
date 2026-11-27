@@ -1,6 +1,6 @@
-import {FAMILY_LABELS,familyDefinition} from './title-exercises.js?v=0.60.9';
-import {createId} from './local-id.js?v=0.60.9';
-import {metrics,rewards,periodSessions,muscleTotals,strengthBySession,previousExercise,coachSuggestions,applySuggestion,localDay} from './core.js?v=0.60.9';
+import {FAMILY_LABELS,familyDefinition} from './title-exercises.js?v=0.60.10';
+import {createId} from './local-id.js?v=0.60.10';
+import {metrics,rewards,periodSessions,muscleTotals,strengthBySession,previousExercise,coachSuggestions,applySuggestion,localDay} from './core.js?v=0.60.10';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>new Intl.NumberFormat('it-IT',{maximumFractionDigits:1}).format(n);
 const date=n=>new Date(n).toLocaleDateString('it-IT',{day:'numeric',month:'short'});

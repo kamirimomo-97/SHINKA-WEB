@@ -81,3 +81,5 @@ body .wf-screen h1{font:650 27px/1.2 'Segoe UI',system-ui,sans-serif!important;l
 @media(max-height:740px){.wf-brandbar{padding-top:4px}.wf-plan{padding-bottom:7px}.wf-content{padding-top:0;padding-bottom:12px}.wf-body{height:74px}.wf-entry{padding-top:12px}.wf-fields{margin:9px 0}.wf-fields input,.wf-fields>span{height:52px}.wf-rest>strong{font-size:40px}.wf-entry-top{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.wf-screen *{scroll-behavior:auto!important;transition:none!important}}
 body.wf-mode>header{display:contents!important}body.wf-mode>header>:not(#shinka-build-version){display:none!important}.wf-brandbar{padding-top:28px}@media(max-height:740px){.wf-brandbar{padding-top:24px}}
+
+.wf-discard-ack{display:flex;align-items:center;gap:12px;padding:14px 0;font-size:14px;line-height:1.5}.wf-discard-ack input{width:20px;min-width:20px;height:20px;margin:0;accent-color:#c7a0f3}#confirm-discard:disabled{opacity:.4;cursor:not-allowed}

@@ -1,7 +1,7 @@
-import {isValidTraining} from './training-validity.js?v=0.60.9';
-import {TITLES,TITLE_BY_ID} from './title-catalog.js?v=0.60.9';
-import {monday,addDate,distance} from './rank-system.js?v=0.60.9';
-import {buildExerciseRegistry,familyDefinition,exerciseIdentity,muscleGroup,isDumbbell,normalizeExerciseText} from './title-exercises.js?v=0.60.9';
+import {isValidTraining} from './training-validity.js?v=0.60.10';
+import {TITLES,TITLE_BY_ID} from './title-catalog.js?v=0.60.10';
+import {monday,addDate,distance} from './rank-system.js?v=0.60.10';
+import {buildExerciseRegistry,familyDefinition,exerciseIdentity,muscleGroup,isDumbbell,normalizeExerciseText} from './title-exercises.js?v=0.60.10';
 function localDateReader(timeZone){const formatter=new Intl.DateTimeFormat('en-CA',{timeZone,year:'numeric',month:'2-digit',day:'2-digit'});return instant=>{const parts=formatter.formatToParts(new Date(instant)),get=key=>parts.find(p=>p.type===key).value;return get('year')+'-'+get('month')+'-'+get('day');};}
 const work=ex=>(ex.sets||[]).filter(s=>s.done===true&&s.type!=='warmup'&&Number.isFinite(s.reps)&&s.reps>0&&Number.isFinite(s.kg)&&s.kg>=0);
 export function titleTimeZone(db){return db.rankProgress?.timeZone||db.titles?.timeZone||Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';}

@@ -1,4 +1,4 @@
-import {BUILD_ENVIRONMENT} from './environment-config.js?v=0.60.9';
+import {BUILD_ENVIRONMENT} from './environment-config.js?v=0.60.10';
 export const ENVIRONMENT_LABELS={beta:'BETA',local:'LOCALE',administrator:'ADMINISTRATOR'};
 export function resolveEnvironment(build,location={}){const local=['localhost','127.0.0.1','[::1]','::1'].includes(location.hostname)||!location.hostname;const parts=String(location.hostname||'').split('.');const ip=parts.map(Number);const lan=parts.length===4&&parts.every(x=>/^\d{1,3}$/.test(x))&&ip.every(x=>x>=0&&x<=255)&&(ip[0]===10||ip[0]===192&&ip[1]===168||ip[0]===172&&ip[1]>=16&&ip[1]<=31);return build==='administrator'?(local?'administrator':'beta'):build==='local'?((local||lan)?'local':'beta'):'beta';}
 export const ENVIRONMENT=resolveEnvironment(BUILD_ENVIRONMENT,globalThis.location||{});

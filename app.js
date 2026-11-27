@@ -1,37 +1,37 @@
-import {rankConstancyView,setupRankConstancy} from './rank-constancy.js?v=0.60.9';
-import {rankConstancyModel} from './rank-constancy-model.js?v=0.60.9';
+import {rankConstancyView,setupRankConstancy} from './rank-constancy.js?v=0.60.10';
+import {rankConstancyModel} from './rank-constancy-model.js?v=0.60.10';
 const rankConstancyController=setupRankConstancy({getModel:()=>rankConstancyModel(db)});
-import {TRAINING_RULE_VERSION,isValidTraining,isProgressionTraining} from './training-validity.js?v=0.60.9';
-import {loadProtectedProfile,restoreProtectedProfile} from './profile-safety.js?v=0.60.9';
-import {setupPwaUpdates} from './pwa-updates.js?v=0.60.9';
-import {syncTitles} from './titles-engine.js?v=0.60.9';
-import {titleSummary,titlesCollection,titleRewards,setupTitles} from './titles-ui.js?v=0.60.9';
+import {TRAINING_RULE_VERSION,isValidTraining,isProgressionTraining} from './training-validity.js?v=0.60.10';
+import {loadProtectedProfile,restoreProtectedProfile} from './profile-safety.js?v=0.60.10';
+import {setupPwaUpdates} from './pwa-updates.js?v=0.60.10';
+import {syncTitles} from './titles-engine.js?v=0.60.10';
+import {titleSummary,titlesCollection,titleRewards,setupTitles} from './titles-ui.js?v=0.60.10';
 const titleFilters={category:'all',rarity:'all',status:'all'};let titleEvaluation;
-import {ENVIRONMENT,ALLOW_LABS,createEnvironmentStorage,assertEnvironmentProfile,environmentTools} from './app-environment.js?v=0.60.9';
+import {ENVIRONMENT,ALLOW_LABS,createEnvironmentStorage,assertEnvironmentProfile,environmentTools} from './app-environment.js?v=0.60.10';
 const workoutExperience=await import('./workout-local.js');
 let workoutController=null;
-const administrator=ENVIRONMENT==='administrator'?await import('./administrator-tools.js?v=0.60.9'):null;
-import {activeRank,syncRankProgress} from './rank-progress.js?v=0.60.9';
-import {localDate} from './rank-system.js?v=0.60.9';
-import {createId} from './local-id.js?v=0.60.9';
-import {createLiveRankEffects} from './live-rank-effects.js?v=0.60.9';
+const administrator=ENVIRONMENT==='administrator'?await import('./administrator-tools.js?v=0.60.10'):null;
+import {activeRank,syncRankProgress} from './rank-progress.js?v=0.60.10';
+import {localDate} from './rank-system.js?v=0.60.10';
+import {createId} from './local-id.js?v=0.60.10';
+import {createLiveRankEffects} from './live-rank-effects.js?v=0.60.10';
 const liveRankEffects=createLiveRankEffects();
-import {createGemTracker} from './rank-gem-effects.js?v=0.60.9';
+import {createGemTracker} from './rank-gem-effects.js?v=0.60.10';
 
 const updateRankGems=createGemTracker();
-import {setupTrainerBadges} from './trainer-badge.js?v=0.60.9';
-import {rewardNotice} from './reward-status.js?v=0.60.9';
-import {hatchEnvironment,hatchShell,hatchCompanion} from './hatch-environment.js?v=0.60.9';
-import {newHatch,tapHatch,canSkipHatch,finishHatch,FINALE_DURATION} from './hatching.js?v=0.60.9';
-import {eggArt,eggElements} from './eggs.js?v=0.60.9';
-import {starterKeys,migrateProgression,playerLevel,weekRewards,claimWeek,canObtain,weekKey} from './progression.js?v=0.60.9';
-import {avatarProfile,avatarArt,setupWardrobe} from './wardrobe.js?v=0.60.9';
-import {seal,updateNavigation,applyImmersive,launchScreen} from './immersive.js?v=0.60.9';
-import {hydrateAvatars} from './avatar-appearance.js?v=0.60.9';
-import {creatureArt,framedCard,migrateSoul,workoutCompanion,celebrationView} from './soul.js?v=0.60.9';
-import {setupJourney,migrateJourney,homeView,sanctuary,arenaView,planOrganization,scheduleFields,loadFields,bodyProgress} from './journey.js?v=0.60.9';
-import {TYPES,metrics,strength,rewards,validate,timerSeconds,adjustTimer,sessionDuration} from './core.js?v=0.60.9';
-import {configureEnhancements,migrate,dashboard,progressPage,coachPage,profileSettings,editorTools,exerciseTools,duplicateButton,tickElapsed,libraryView,exercisePicker} from './enhancements.js?v=0.60.9';
+import {setupTrainerBadges} from './trainer-badge.js?v=0.60.10';
+import {rewardNotice} from './reward-status.js?v=0.60.10';
+import {hatchEnvironment,hatchShell,hatchCompanion} from './hatch-environment.js?v=0.60.10';
+import {newHatch,tapHatch,canSkipHatch,finishHatch,FINALE_DURATION} from './hatching.js?v=0.60.10';
+import {eggArt,eggElements} from './eggs.js?v=0.60.10';
+import {starterKeys,migrateProgression,playerLevel,weekRewards,claimWeek,canObtain,weekKey} from './progression.js?v=0.60.10';
+import {avatarProfile,avatarArt,setupWardrobe} from './wardrobe.js?v=0.60.10';
+import {seal,updateNavigation,applyImmersive,launchScreen} from './immersive.js?v=0.60.10';
+import {hydrateAvatars} from './avatar-appearance.js?v=0.60.10';
+import {creatureArt,framedCard,migrateSoul,workoutCompanion,celebrationView} from './soul.js?v=0.60.10';
+import {setupJourney,migrateJourney,homeView,sanctuary,arenaView,planOrganization,scheduleFields,loadFields,bodyProgress} from './journey.js?v=0.60.10';
+import {TYPES,metrics,strength,rewards,validate,timerSeconds,adjustTimer,sessionDuration} from './core.js?v=0.60.10';
+import {configureEnhancements,migrate,dashboard,progressPage,coachPage,profileSettings,editorTools,exerciseTools,duplicateButton,tickElapsed,libraryView,exercisePicker} from './enhancements.js?v=0.60.10';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),uid=()=>createId(),clone=x=>JSON.parse(JSON.stringify(x));
 const firstAccessPreview=ALLOW_LABS&&new URLSearchParams(location.search||'').get('primo-accesso')==='1';
 const visualPreview=ALLOW_LABS&&new URLSearchParams(location.search||'').get('demo')==='immersive';
@@ -54,6 +54,8 @@ if(visualPreview){db.demoMax={playerLevel:5,monsterLevel:2};db.athlete.name='All
 // Esempio richiesto dall’utente: aggiunta unica, senza sostituire dati esistenti.
 if(!recoveryBlocked&&!db.demoFiveDayAdded){const days=[["Lunedì · Upper",1,[["Panca piana","Petto",3,8,120],["Lat machine","Dorso",3,10,120],["Alzate laterali","Spalle",2,12,75],["Curl manubri","Bicipiti",2,12,75]]],["Martedì · Lower",2,[["Squat","Quadricipiti",3,8,150],["Stacco rumeno","Femorali",3,10,120],["Calf raise","Polpacci",3,12,75],["Crunch al cavo","Addome",2,12,75]]],["Giovedì · Push",4,[["Panca inclinata manubri","Petto",3,10,120],["Military press","Spalle",2,10,120],["Alzate laterali","Spalle",2,12,75],["Pushdown","Tricipiti",3,12,75]]],["Venerdì · Pull",5,[["Lat machine","Dorso",3,10,120],["Rematore","Dorso",3,10,120],["Reverse fly","Spalle posteriori",2,12,75],["Curl manubri","Bicipiti",3,12,75]]],["Sabato · Legs",6,[["Leg press","Quadricipiti",3,10,150],["Leg curl","Femorali",3,12,90],["Calf raise","Polpacci",3,12,75],["Crunch al cavo","Addome",2,12,75]]]];for(const [name,day,items] of days){const exercises=items.map(([name,muscle,count,reps,rest])=>{let base=db.library.find(e=>e.name===name);if(!base){base={id:uid(),name,muscle};db.library.push(base)}return {...clone(base),rest,repMin:reps,repMax:reps+2,increment:0,loadMode:name.toLowerCase().includes('manubri')?'per-hand':'total',handCount:2,equipment:name.toLowerCase().includes('manubri')?'Manubri':'',sets:Array.from({length:count},()=>({type:'normale',kg:0,reps,rir:3,rpe:'',note:'Imposta il tuo carico prima di iniziare.',done:false,segments:[]}))}});db.plans.push({id:uid(),name:'ESEMPIO 5 giorni · '+name,days:[day],note:'Programma dimostrativo modificabile, non personalizzato. Kg a zero: inserisci carichi adatti a te. Mantieni circa 2–3 RIR; esegui riscaldamento generale e serie progressive preparatorie (tipo riscaldamento), secondo necessità. Mercoledì e domenica: riposo. Nessun obbligo di cedimento o incremento. Per i manubri indica kg per singolo manubrio.',exercises})}db.demoFiveDayAdded=true;try{labStorage.setItem('shinka-lab-v1',JSON.stringify(db))}catch{}}
 
+let discardSessionId=null;
+function reviewDiscard(){if(!db.active)return;discardSessionId=db.active.id;modal(`<h3>Eliminare senza salvare?</h3><p>${esc(db.active.name)} · ${sessionDuration({...db.active,finished:Date.now()})} · ${metrics(db.active).sets} serie allenanti.</p><p>Questa sessione non verrà aggiunta allo storico e non assegnerà XP, gemme o titoli. Gli allenamenti già salvati restano conservati.</p><label class="wf-discard-ack"><input id="discard-ack" type="checkbox">Confermo di non voler salvare questo allenamento.</label>${btn('Torna all’allenamento','close-modal','primary')} ${btn('Elimina senza salvare','confirm-discard','danger','id="confirm-discard" disabled')}`);}
 let page=location.hash.slice(1)||'home',draft=db.draft,historyId=null,filter='',completion=null,onboardingStep=db.onboardingDraft==='avatar'?'avatar':'name';
 function save(){if(recoveryBlocked)return false;db.shinkaEnvironment=ENVIRONMENT;try{labStorage.setItem('shinka-lab-v1',JSON.stringify(db));return true}catch{alert('Salvataggio non riuscito: spazio esaurito o memoria non disponibile. Esporta subito un backup.');return false}}
 function toast(t){$('#toast').textContent=t;$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',3000)}
@@ -91,7 +93,7 @@ function current(){return page==='workout'?db.active:draft}
 function persistCurrent(){if(page==='editor')db.draft=draft;save()}
 function exportData(){let a=document.createElement('a'),url=URL.createObjectURL(new Blob([(recoveryBlocked?profileLoad.raw??'Archivio non accessibile':JSON.stringify(db,null,2))],{type:'application/json'}));a.href=url;a.download='shinka-'+ENVIRONMENT+'-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 document.addEventListener('input',ev=>{let el=ev.target;if(el.id==='search'){filter=el.value;$('#library').innerHTML=libraryHtml();return}if(!el.dataset.path)return;let p=current();if(!p)return;let parts=el.dataset.path.split('.'),last=parts.pop(),obj=parts.reduce((o,k)=>o[k],p);if(el.type==='number'){if(!el.validity.valid||el.value===''){if(['rir','rpe'].includes(last)&&el.value==='')obj[last]='';else if(last==='bodyMass'&&el.value==='')delete obj[last];else return}else obj[last]=Number(el.value)}else obj[last]=el.dataset.number?Number(el.value):el.value;persistCurrent()});
-document.addEventListener('change',ev=>{if(ev.target.dataset.path&&['.type','.loadMode','.handCount'].some(k=>ev.target.dataset.path.endsWith(k)))render();if(ev.target.id==='import-file')importFile(ev.target.files[0])});
+document.addEventListener('change',ev=>{if(ev.target.id==='discard-ack'){$('#confirm-discard').disabled=!ev.target.checked;}if(ev.target.dataset.path&&['.type','.loadMode','.handCount'].some(k=>ev.target.dataset.path.endsWith(k)))render();if(ev.target.id==='import-file')importFile(ev.target.files[0])});
 async function importFile(file){if(!file)return;try{if(file.size>10000000)throw Error('File troppo grande');let next=migrateProgression(migrateSoul(migrateJourney(migrate(validate(assertEnvironmentProfile(JSON.parse(await file.text())))))));if(!confirm('Sostituire tutti i dati locali? Esporta prima un backup se vuoi conservarli.'))return;next.shinkaEnvironment=ENVIRONMENT;next=restoreProtectedProfile(labStorage,JSON.stringify(next),raw=>validate(assertEnvironmentProfile(JSON.parse(raw))));db=next;recoveryBlocked=false;draft=db.draft;historyId=null;render();toast('Backup ripristinato')}catch(e){alert('Importazione annullata: '+e.message)}}
 document.addEventListener('click',ev=>{let b=ev.target.closest('[data-act]');if(!b)return;let a=b.dataset.act,i=Number(b.dataset.i),j=Number(b.dataset.j),k=Number(b.dataset.k),p=current();
 if(a==='open-rewards'){location.hash='home';render();const panel=document.querySelector('.player-profile-details');if(panel){panel.open=true;const rewards=panel.querySelector('details');if(rewards)rewards.open=true;panel.scrollIntoView?.({behavior:'smooth',block:'start'});}return;}if(a==='dismiss-celebration'){completion=null;render()}
@@ -113,9 +115,10 @@ if(a==='rest'){if(!validInputs())return;db.timer=Date.now()+p.rest*1000;save();t
 if(a==='stop-timer'){db.timer=null;save();tick()}
 if(a==='timer-minus'||a==='timer-plus'){db.timer=adjustTimer(db.timer,a==='timer-minus'?-15:15);save();tick()}
 if(a==='pause-timer'){if(db.timer&&typeof db.timer==='object'&&db.timer.paused)db.timer=Date.now()+db.timer.remaining*1000;else db.timer={paused:true,remaining:timerSeconds(db.timer)};save();tick()}
-if(a==='finish'){if(!validInputs())return;modal(`<h3>Salvare l’allenamento?</h3><p>Durata attuale: ${sessionDuration({...p,finished:Date.now()})}</p><p>${metrics(p).sets} serie allenanti · ${fmt(metrics(p).volume)} kg. Le serie non completate rimarranno indicate come tali.</p><p>Per avanzare servono almeno 20 minuti e 2 serie allenanti completate. Le sessioni più brevi restano nello storico.</p><p>La sessione salvata non sarà modificabile.</p>${btn('Conferma e salva','confirm-finish','primary')}`)}
-if(a==='confirm-finish'&&db.active){let now=new Date(),day=[now.getFullYear(),now.getMonth()+1,now.getDate()].join('-');const previous=db;db={...db,sessions:[...db.sessions,{...clone(db.active),trainingRuleVersion:TRAINING_RULE_VERSION,finished:Date.now(),day}],active:null,timer:null};if(save()){try{syncTitles(db,labStorage,Date.now(),{notify:true,sandbox:!!(adminProfile&&administrator.allTitlesUnlocked(db)),source:adminProfile?administrator.titleSource(db):db});}catch{toast('Allenamento salvato. I titoli verranno rivalutati al prossimo accesso.');}completion=db.sessions.at(-1);$('#modal').close();location.hash='history';toast(isValidTraining(completion)?'Allenamento salvato':'Sessione salvata nello storico. Per la progressione servono almeno 20 minuti e 2 serie allenanti.')}else db=previous}
-if(a==='discard'&&confirm('Abbandonare? Le serie di questa sessione non saranno salvate nello storico.')){db.active=null;db.timer=null;save();location.hash='home'}
+if(a==='finish'&&db.active){modal(`<h3>Come vuoi concludere?</h3><p>Durata attuale: ${sessionDuration({...db.active,finished:Date.now()})}</p><p>${metrics(db.active).sets} serie allenanti · ${fmt(metrics(db.active).volume)} kg.</p><p>Salva la sessione per conservarla nello storico. Per avanzare servono almeno 20 minuti e 2 serie allenanti completate.</p>${btn('Salva allenamento','confirm-finish','primary')} ${btn('Non salvare…','discard','quiet')} ${btn('Continua ad allenarti','close-modal','quiet')}`)}
+if(a==='confirm-finish'&&db.active){$('#modal').close();if(!validInputs())return;let now=new Date(),day=[now.getFullYear(),now.getMonth()+1,now.getDate()].join('-');const previous=db;db={...db,sessions:[...db.sessions,{...clone(db.active),trainingRuleVersion:TRAINING_RULE_VERSION,finished:Date.now(),day}],active:null,timer:null};if(save()){try{syncTitles(db,labStorage,Date.now(),{notify:true,sandbox:!!(adminProfile&&administrator.allTitlesUnlocked(db)),source:adminProfile?administrator.titleSource(db):db});}catch{toast('Allenamento salvato. I titoli verranno rivalutati al prossimo accesso.');}completion=db.sessions.at(-1);$('#modal').close();location.hash='history';toast(isValidTraining(completion)?'Allenamento salvato':'Sessione salvata nello storico. Per la progressione servono almeno 20 minuti e 2 serie allenanti.')}else db=previous}
+if(a==='discard')reviewDiscard();
+if(a==='confirm-discard'&&db.active&&db.active.id===discardSessionId&&$('#discard-ack')?.checked){const previous=db;db={...db,active:null,timer:null};if(save()){discardSessionId=null;completion=null;$('#modal').close();location.hash='home';toast('Allenamento non salvato. Nessun avanzamento assegnato.')}else db=previous}
 if(a==='history'){historyId=b.dataset.id;render()}if(a==='close-history'){historyId=null;render()}
 if(a==='starter'){db.starter=b.dataset.id;save();render()}
 if(a==='custom')modal(`<h3>Il tuo esercizio</h3><label>Nome<input id="custom-name" maxlength="100"></label><label>Muscolo primario<select id="custom-muscle">${['Petto','Dorso','Quadricipiti','Femorali','Glutei','Spalle','Bicipiti','Tricipiti','Polpacci','Addome','Catena posteriore','Altro'].map(m=>`<option>${m}</option>`).join('')}</select></label>${btn('Salva esercizio','save-custom','primary')}`);

@@ -1,5 +1,5 @@
-import {rankFrameSvg} from './rank-art.js?v=0.60.9';
-import {rankBanner} from './rank-banner.js?v=0.60.9';
+import {rankFrameSvg} from './rank-art.js?v=0.60.10';
+import {rankBanner} from './rank-banner.js?v=0.60.10';
 const tones=['#c69aff','#d3efff','#43ffae','#469cff','#ff527b','#ffd771','#f0deff'];
 export function rankTransition(before,after){if(!before)return null;if(!before.prime&&after.prime)return 'prime';if(before.prime&&!after.prime)return 'down';if(before.rank===after.rank)return null;return after.rank>before.rank?'up':'down';}
 let sequence=0;

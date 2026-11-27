@@ -1,0 +1,49 @@
+.avatar-profile{display:flex;align-items:center;gap:16px;min-width:0}
+.avatar-portrait{width:88px;height:94px;flex:0 0 88px;overflow:hidden;padding:0;border-radius:16px;background:radial-gradient(ellipse at center,#78669335,transparent 75%),#15181a}
+.player-avatar-art{display:block;width:100%;height:100%;min-height:0}
+.player-avatar-art>img{display:block;width:100%;height:100%;object-fit:contain}
+.avatar-profile-copy{min-width:0}.avatar-profile-copy small{overflow-wrap:anywhere}.avatar-profile-copy h2{margin:5px 0 8px}.avatar-profile-copy button{padding:8px 10px;font-size:12px;min-height:40px}
+#modal:has(.wardrobe){width:min(860px,96vw);max-height:94dvh;padding:18px;overflow:hidden;color:#c5cbc7;border-color:#594e64}
+#modal:has(.wardrobe)>.row{height:32px;flex-shrink:0;margin-bottom:6px}
+#modal:has(.wardrobe)>.row h2{font-family:inherit;font-size:13px;letter-spacing:3px;margin:0;color:#bba2d2}
+#modal:has(.wardrobe)>.row button{padding:0;width:36px;height:36px;font-size:24px;font-weight:400}
+.wardrobe{display:flex;flex-direction:column;min-height:0;max-height:calc(94dvh - 80px)}
+.wardrobe-heading{flex-shrink:0}.wardrobe-heading small{font-size:9px;letter-spacing:2px;color:#9e8eab}.wardrobe-heading h2{font:600 25px/1.2 'DM Sans',sans-serif;margin:5px 0 12px;letter-spacing:-.5px}
+.wardrobe-tabs{display:flex;gap:5px;padding:4px;background:#111416;border:1px solid #303137;border-radius:13px;flex-shrink:0;margin-bottom:12px}
+.wardrobe-tabs button{flex:1;min-height:42px;padding:8px 5px;border-color:transparent;background:transparent;font-size:13px}
+.wardrobe-workspace{display:grid;grid-template-columns:minmax(210px,.85fr) minmax(0,1.15fr);gap:20px;min-height:0;flex:1}
+.wardrobe-preview{position:relative;display:flex;align-items:center;flex-direction:column;min-height:0;height:410px;max-height:100%;overflow:hidden;border:1px solid #494051;border-radius:18px;background:radial-gradient(ellipse at 50% 65%,#9574b02b,transparent 66%),linear-gradient(145deg,#24212a,#141719)}
+.avatar-preview-figure{min-height:0;flex:1;width:100%;padding:8px 8px 0}.avatar-preview-figure.is-head{padding:20px 0 0}
+.wardrobe-zoom{position:absolute;top:8px;right:8px;padding:6px 9px;min-height:34px;font-size:10px;background:#17191bb8!important;color:#c4b5cf;border-color:#605569}
+.wardrobe-preview-label{font-size:10px;letter-spacing:.5px;color:#b4a9bf;padding:8px;flex-shrink:0}
+.wardrobe-controls{overflow-y:auto;overscroll-behavior:contain;min-height:0;padding:0 6px 4px 0;scrollbar-width:thin;scrollbar-color:#6e5b7d #202126}
+.wardrobe fieldset{border:0;padding:0;margin:0 0 17px;min-width:0}.wardrobe legend{display:flex;align-items:center;justify-content:space-between;width:100%;color:#bfc2c4;font-size:12px;margin-bottom:9px}.wardrobe legend strong{font-size:11px;font-weight:400;color:#ab94be}
+.wardrobe-models>div{display:flex;gap:7px}.wardrobe-models button{flex:1;min-height:44px;padding:8px;font-size:12px}
+.appearance-swatches{display:grid;grid-template-columns:repeat(var(--choices),minmax(0,1fr));gap:3px}.appearance-swatches button{display:grid;place-items:center;min-height:42px;min-width:0;padding:3px;background:transparent;border:1px solid transparent;border-radius:9px}
+.appearance-swatches button span{display:grid;place-items:center;width:28px;height:28px;border:1px solid #ffffff55;border-radius:50%;font-size:17px;color:#fff;text-shadow:0 1px 3px #000,0 0 3px #000}
+.wardrobe [aria-pressed=true]{border-color:#ba98d8;box-shadow:inset 0 0 0 1px #ba98d85c;background:#8f6da52e}
+.wardrobe-presets>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.wardrobe-presets button{padding:8px 3px;font-size:11px;min-height:42px}
+.wardrobe-categories{display:flex;gap:4px;border-bottom:1px solid #3f3847;padding-bottom:10px;margin-bottom:12px}.wardrobe-categories button{flex:1;min-height:40px;padding:5px 2px;font-size:11px;border-radius:8px}
+.wardrobe-items>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.wardrobe-items button{display:flex;align-items:center;justify-content:flex-start;flex-direction:column;gap:6px;padding:8px 5px;min-width:0;min-height:112px;background:#171b1e}
+.wardrobe-items img{width:100%;height:72px;object-fit:contain}.wardrobe-items strong{font-size:10px;line-height:1.3;font-weight:500}.wardrobe-empty-item{height:72px;display:grid;place-items:center;font-size:33px;color:#8e8398;font-weight:300}
+.wardrobe-hairstyles>div{grid-template-columns:repeat(4,minmax(0,1fr))}.wardrobe-hairstyles img,.wardrobe-hairstyles .wardrobe-empty-item{height:58px}.wardrobe-hairstyles button{min-height:100px}
+.wardrobe-note{font-size:11px;line-height:1.5;margin:7px 0 0;color:#8c9598}
+.wardrobe-footer{flex-shrink:0;background:#1b1e20;border-top:1px solid #3c3543;margin-top:12px;padding-top:6px}.wardrobe-status{font-size:11px;margin:0 0 4px;min-height:14px;line-height:1.25;color:#b6a2c6}
+.wardrobe-actions{display:flex;gap:10px}.wardrobe-actions button{min-height:44px;padding:10px;font-size:12px}.wardrobe-actions .primary{flex:1;background:#c0a3d8;color:#241b2d;border-color:#c0a3d8}.wardrobe-actions button:disabled{opacity:.45;cursor:wait}
+.wardrobe button:focus-visible,.avatar-portrait:focus-visible{outline:2px solid #d4b9f1;outline-offset:2px}
+@media(max-width:600px){
+ #modal:has(.wardrobe){padding:12px;width:calc(100vw - 16px);max-height:96dvh;border-radius:17px}
+ #modal:has(.wardrobe)>.row{height:26px;margin-bottom:2px}.wardrobe{max-height:calc(96dvh - 58px)}
+ .wardrobe-heading small{display:none}.wardrobe-heading h2{font-size:22px;margin:2px 0 9px}
+ .wardrobe-tabs{margin-bottom:8px}.wardrobe-tabs button{min-height:38px;font-size:12px}
+ .wardrobe-workspace{display:flex;flex-direction:column;gap:10px;overflow:hidden}
+ .wardrobe-preview{height:clamp(160px,27dvh,235px);min-height:145px;flex-shrink:0;width:100%}
+ .avatar-preview-figure{padding:3px 5px 0}.avatar-preview-figure.is-head{padding:5px 0 0}
+ .wardrobe-preview-label{padding:3px 7px 5px;font-size:9px}.wardrobe-zoom{font-size:9px;top:6px;right:6px;min-height:32px}
+ .wardrobe-controls{flex:1;padding-right:2px;min-height:90px}.wardrobe fieldset{margin-bottom:11px}.wardrobe legend{margin-bottom:5px;font-size:11px}
+ .wardrobe-items>div{gap:5px}.wardrobe-items button{min-height:95px;padding:6px 3px;gap:4px}.wardrobe-items img,.wardrobe-empty-item{height:58px}
+ .wardrobe-hairstyles img,.wardrobe-hairstyles .wardrobe-empty-item{height:48px}.wardrobe-hairstyles button{min-height:86px}.wardrobe-items strong{font-size:9px}
+ .wardrobe-footer{margin-top:8px;padding-top:4px}.wardrobe-status:empty{min-height:0;margin:0 0 4px}.wardrobe-note{font-size:10px}
+ .avatar-profile{gap:10px}.avatar-portrait{width:72px;flex-basis:72px;height:80px}.avatar-profile-copy h2{font-size:24px}
+}
+@media(prefers-reduced-motion:no-preference){.wardrobe-preview .player-avatar-art{animation:avatar-enter .2s ease-out}@keyframes avatar-enter{from{opacity:.65}to{opacity:1}}}

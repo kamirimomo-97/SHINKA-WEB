@@ -1,9 +1,9 @@
-import {isProgressionTraining} from './training-validity.js?v=0.60.9';
-import {rewardReceipt} from './reward-status.js?v=0.60.9';
-import {dumbbell,xpFrame} from './fantasy-chrome.js?v=0.60.9';
-import {homePlatform} from './home-platform.js?v=0.60.9';
-import {assignedProgress} from './progression.js?v=0.60.9';
-import {metrics,timerSeconds,sessionDuration} from './core.js?v=0.60.9';
+import {isProgressionTraining} from './training-validity.js?v=0.60.10';
+import {rewardReceipt} from './reward-status.js?v=0.60.10';
+import {dumbbell,xpFrame} from './fantasy-chrome.js?v=0.60.10';
+import {homePlatform} from './home-platform.js?v=0.60.10';
+import {assignedProgress} from './progression.js?v=0.60.10';
+import {metrics,timerSeconds,sessionDuration} from './core.js?v=0.60.10';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const lineages={"fire":{"names":["Himori","Magarok","Kaguryon"],"tone":"#ff945e","rgb":"255,128,65","element":"Fuoco","symbol":"火"},"water":{"names":["Mizuro","Mizurai","Mizuryon"],"tone":"#6adeff","rgb":"78,192,237","element":"Acqua","symbol":"水"},"nature":{"names":["Komori","Morika","Daijurin"],"color":"#b5df74","tone":"#b5df74","rgb":"162,211,101","element":"Natura","symbol":"葉","desc":"Uno spirito della foresta che cresce da piccola volpe delle foglie a guardiano dalle nove code."},"wind":{"names":["Soripi","Sorakaze","Soraryu"],"tone":"#8de8ff","rgb":"90,196,250","element":"Vento","symbol":"風"},"earth":{"names":["Bisonel","Rocabison","Terrabison"],"color":"#d6ab72","tone":"#d6ab72","rgb":"214,171,114","element":"Terra","symbol":"土","desc":"Testardo, fedele e protettivo. Un giovane bisonte che cresce fino a diventare il Signore delle Pianure Minerali."},"lightning":{"names":["Raikon","Raidenko","Raijuryu"],"color":"#d6b768","tone":"#d6b768","rgb":"214,183,104","element":"Fulmine","symbol":"雷","desc":"Da scintilla selvatica a lupo tonante: una stirpe di lupi dal pelo viola e bianco, con fulmini dorati ed energia elettrica."},"shadow":{"names":["Yumori","Yumbral","Noctyron"],"color":"#b68ce8","tone":"#b68ce8","rgb":"182,140,232","element":"Ombra","symbol":"月","desc":"Un piccolo spirito curioso e leale. Il suo Nucleo d’Ombra cresce fino a diventare un maestoso guardiano delle tenebre."},"ice":{"names":["Yukiro","Hyogara","Hyokaiser"],"color":"#a8d8ff","tone":"#a8d8ff","rgb":"168,216,255","element":"Ghiaccio","symbol":"❄","desc":"Un leopardo delle nevi che cresce da cucciolo vivace a guardiano del permafrost, con cristalli di ghiaccio e una folta coda maculata."}};
 export function companionProgress(db,key){if(db.journeyV2)return assignedProgress(db,key);const awarded=new Map();for(const s of [...db.sessions].sort((a,b)=>a.finished-b.finished))if(isProgressionTraining(s)&&!awarded.has(s.day))awarded.set(s.day,s.shinkaryu||db.legacyStarter||db.starter);const days=[...awarded.values()].filter(k=>k===key).length;return {xp:days*100,affinity:Math.min(100,days*5)};}
