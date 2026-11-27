@@ -1,8 +1,8 @@
-import {activeRank,calculateRankProgress} from './rank-progress.js?v=0.60.8';
-import {playerLevel} from './progression.js?v=0.60.8';
-import {rankForLevel} from './rank-banner.js?v=0.60.8';
-import {RANKS,ENTRY,DECAY,PRIME_RULES,localDate,monday,addDate,distance} from './rank-system.js?v=0.60.8';
-import {MIN_TRAINING_MS,MIN_WORKING_SETS} from './training-validity.js?v=0.60.8';
+import {activeRank,calculateRankProgress} from './rank-progress.js?v=0.60.9';
+import {playerLevel} from './progression.js?v=0.60.9';
+import {rankForLevel} from './rank-banner.js?v=0.60.9';
+import {RANKS,ENTRY,DECAY,PRIME_RULES,localDate,monday,addDate,distance} from './rank-system.js?v=0.60.9';
+import {MIN_TRAINING_MS,MIN_WORKING_SETS} from './training-validity.js?v=0.60.9';
 export const RANK_NAMES=Object.freeze([...RANKS,'SHINKA PRIME']);
 // Presentation adapter only. The shared engine computes progression; nothing is saved here.
 export function rankConstancyModel(db,now=Date.now()){

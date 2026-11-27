@@ -1,7 +1,7 @@
-import {celebrateRank,rankTransition} from './rank-transition-effects.js?v=0.60.8';
-import {awardedGemIndices} from './rank-gem-effects.js?v=0.60.8';
-import {createGemSound} from './rank-gem-sound.js?v=0.60.8';
-import {ENTRY,RANKS} from './rank-system.js?v=0.60.8';
+import {celebrateRank,rankTransition} from './rank-transition-effects.js?v=0.60.9';
+import {awardedGemIndices} from './rank-gem-effects.js?v=0.60.9';
+import {createGemSound} from './rank-gem-sound.js?v=0.60.9';
+import {ENTRY,RANKS} from './rank-system.js?v=0.60.9';
 function writeLevel(plate,value){if(!plate)return;const digits=plate.querySelector?.('.rank-level-value');if(digits)digits.textContent=value;else plate.textContent='Liv. '+value;}
 export function createLiveRankEffects({celebrate=celebrateRank,soundFactory=createGemSound,schedule=setTimeout,cancel=clearTimeout}={}){let previous=null,pending=null,enabled=true,volume=.35;const gem=soundFactory(),charge=soundFactory(undefined,'assets/audio/rank-energy-riser.mp3'),impact=soundFactory(undefined,'assets/audio/rank-metal-hit.mp3'),players=[gem,charge,impact];
  return {update(root,state){if(pending!==null){cancel(pending);pending=null;}players.forEach(p=>p.stop());const next={...state,prime:!!state.prime};if(previous===null){previous=next;return;}const banner=root?.querySelector?.('.rank-banner,.prime-v2');if(!banner)return;const before=previous;previous=next;

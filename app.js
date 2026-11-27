@@ -1,35 +1,37 @@
-import {rankConstancyView,setupRankConstancy} from './rank-constancy.js?v=0.60.8';
-import {rankConstancyModel} from './rank-constancy-model.js?v=0.60.8';
+import {rankConstancyView,setupRankConstancy} from './rank-constancy.js?v=0.60.9';
+import {rankConstancyModel} from './rank-constancy-model.js?v=0.60.9';
 const rankConstancyController=setupRankConstancy({getModel:()=>rankConstancyModel(db)});
-import {TRAINING_RULE_VERSION,isValidTraining,isProgressionTraining} from './training-validity.js?v=0.60.8';
-import {loadProtectedProfile,restoreProtectedProfile} from './profile-safety.js?v=0.60.8';
-import {setupPwaUpdates} from './pwa-updates.js?v=0.60.8';
-import {syncTitles} from './titles-engine.js?v=0.60.8';
-import {titleSummary,titlesCollection,titleRewards,setupTitles} from './titles-ui.js?v=0.60.8';
+import {TRAINING_RULE_VERSION,isValidTraining,isProgressionTraining} from './training-validity.js?v=0.60.9';
+import {loadProtectedProfile,restoreProtectedProfile} from './profile-safety.js?v=0.60.9';
+import {setupPwaUpdates} from './pwa-updates.js?v=0.60.9';
+import {syncTitles} from './titles-engine.js?v=0.60.9';
+import {titleSummary,titlesCollection,titleRewards,setupTitles} from './titles-ui.js?v=0.60.9';
 const titleFilters={category:'all',rarity:'all',status:'all'};let titleEvaluation;
-import {ENVIRONMENT,ALLOW_LABS,createEnvironmentStorage,assertEnvironmentProfile,environmentTools} from './app-environment.js?v=0.60.8';
-const administrator=ENVIRONMENT==='administrator'?await import('./administrator-tools.js?v=0.60.8'):null;
-import {activeRank,syncRankProgress} from './rank-progress.js?v=0.60.8';
-import {localDate} from './rank-system.js?v=0.60.8';
-import {createId} from './local-id.js?v=0.60.8';
-import {createLiveRankEffects} from './live-rank-effects.js?v=0.60.8';
+import {ENVIRONMENT,ALLOW_LABS,createEnvironmentStorage,assertEnvironmentProfile,environmentTools} from './app-environment.js?v=0.60.9';
+const workoutExperience=await import('./workout-local.js');
+let workoutController=null;
+const administrator=ENVIRONMENT==='administrator'?await import('./administrator-tools.js?v=0.60.9'):null;
+import {activeRank,syncRankProgress} from './rank-progress.js?v=0.60.9';
+import {localDate} from './rank-system.js?v=0.60.9';
+import {createId} from './local-id.js?v=0.60.9';
+import {createLiveRankEffects} from './live-rank-effects.js?v=0.60.9';
 const liveRankEffects=createLiveRankEffects();
-import {createGemTracker} from './rank-gem-effects.js?v=0.60.8';
+import {createGemTracker} from './rank-gem-effects.js?v=0.60.9';
 
 const updateRankGems=createGemTracker();
-import {setupTrainerBadges} from './trainer-badge.js?v=0.60.8';
-import {rewardNotice} from './reward-status.js?v=0.60.8';
-import {hatchEnvironment,hatchShell,hatchCompanion} from './hatch-environment.js?v=0.60.8';
-import {newHatch,tapHatch,canSkipHatch,finishHatch,FINALE_DURATION} from './hatching.js?v=0.60.8';
-import {eggArt,eggElements} from './eggs.js?v=0.60.8';
-import {starterKeys,migrateProgression,playerLevel,weekRewards,claimWeek,canObtain,weekKey} from './progression.js?v=0.60.8';
-import {avatarProfile,avatarArt,setupWardrobe} from './wardrobe.js?v=0.60.8';
-import {seal,updateNavigation,applyImmersive,launchScreen} from './immersive.js?v=0.60.8';
-import {hydrateAvatars} from './avatar-appearance.js?v=0.60.8';
-import {creatureArt,framedCard,migrateSoul,workoutCompanion,celebrationView} from './soul.js?v=0.60.8';
-import {setupJourney,migrateJourney,homeView,sanctuary,arenaView,planOrganization,scheduleFields,loadFields,bodyProgress} from './journey.js?v=0.60.8';
-import {TYPES,metrics,strength,rewards,validate,timerSeconds,adjustTimer} from './core.js?v=0.60.8';
-import {configureEnhancements,migrate,dashboard,progressPage,coachPage,profileSettings,editorTools,exerciseTools,duplicateButton,tickElapsed,libraryView,exercisePicker} from './enhancements.js?v=0.60.8';
+import {setupTrainerBadges} from './trainer-badge.js?v=0.60.9';
+import {rewardNotice} from './reward-status.js?v=0.60.9';
+import {hatchEnvironment,hatchShell,hatchCompanion} from './hatch-environment.js?v=0.60.9';
+import {newHatch,tapHatch,canSkipHatch,finishHatch,FINALE_DURATION} from './hatching.js?v=0.60.9';
+import {eggArt,eggElements} from './eggs.js?v=0.60.9';
+import {starterKeys,migrateProgression,playerLevel,weekRewards,claimWeek,canObtain,weekKey} from './progression.js?v=0.60.9';
+import {avatarProfile,avatarArt,setupWardrobe} from './wardrobe.js?v=0.60.9';
+import {seal,updateNavigation,applyImmersive,launchScreen} from './immersive.js?v=0.60.9';
+import {hydrateAvatars} from './avatar-appearance.js?v=0.60.9';
+import {creatureArt,framedCard,migrateSoul,workoutCompanion,celebrationView} from './soul.js?v=0.60.9';
+import {setupJourney,migrateJourney,homeView,sanctuary,arenaView,planOrganization,scheduleFields,loadFields,bodyProgress} from './journey.js?v=0.60.9';
+import {TYPES,metrics,strength,rewards,validate,timerSeconds,adjustTimer,sessionDuration} from './core.js?v=0.60.9';
+import {configureEnhancements,migrate,dashboard,progressPage,coachPage,profileSettings,editorTools,exerciseTools,duplicateButton,tickElapsed,libraryView,exercisePicker} from './enhancements.js?v=0.60.9';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),uid=()=>createId(),clone=x=>JSON.parse(JSON.stringify(x));
 const firstAccessPreview=ALLOW_LABS&&new URLSearchParams(location.search||'').get('primo-accesso')==='1';
 const visualPreview=ALLOW_LABS&&new URLSearchParams(location.search||'').get('demo')==='immersive';
@@ -66,8 +68,8 @@ if(page==='home')html=hatchPreview?hatchDemoView():homeView(db,creature,families
 if(page==='rank-constancy')html=rankConstancyView(rankConstancyModel(db),{demo:ENVIRONMENT==='administrator'||!!db.demoMax});
 if(page==='plans')html=`<div class="row wrap"><h1>Le tue schede</h1>${btn('✦ Scheda smart','smart-open')} ${btn('＋ Nuova scheda','new-plan','primary')}</div>${db.plans.length?db.plans.map(p=>planCard(p,true)).join(''):'<div class="card empty"><h2>Nessuna scheda</h2></div>'}<details class="card compact-section"><summary>Libreria esercizi · cerca e aggiungi</summary><div class="row section"><h2>Libreria esercizi</h2>${btn('＋ Personalizzato','custom')}</div><input aria-label="Cerca esercizio" id="search" placeholder="Cerca un esercizio…" value="${esc(filter)}"><div id="library">${libraryHtml()}</div></details>`;
 if(page==='editor'&&draft)html=editor(false);
-if(page==='workout')html=db.active?workoutCompanion(db)+editor(true):'<h1>Nessun allenamento attivo</h1><a href="#plans">Scegli una scheda →</a>';
-if(page==='history'){let s=db.sessions.find(x=>x.id===historyId);html=`<h1>Storico</h1>${s?`${btn('← Tutte le sessioni','close-history')}<div class="card section"><h2>${esc(s.name)}</h2><p>${date(s.finished)} · ${esc(s.mode)} · ${fmt(metrics(s).volume)} kg · ${metrics(s).sets} serie</p>${s.exercises.map(e=>`<h3 class="section">${esc(e.name)}</h3>${e.sets.map(x=>`<p>${x.done?'✓':'—'} ${esc(x.type)} · ${x.kg} kg × ${x.reps}${x.type==='drop'?(x.segments||[]).map(z=>` → ${z.kg} kg × ${z.reps}`).join(''):''}${x.rir!==''?' · RIR '+esc(x.rir):''}${x.rpe!==''?' · RPE '+esc(x.rpe):''}${x.note?' · '+esc(x.note):''}</p>`).join('')}`).join('')}<p>${esc(s.note)}</p><small>Sessione salvata</small></div>`:db.sessions.length?db.sessions.slice().reverse().map(s=>`<div class="card row wrap"><div><small>${date(s.finished)} · ${esc(s.mode)}</small><h3>${esc(s.name)}</h3><small>${metrics(s).sets} serie · ${fmt(metrics(s).volume)} kg</small></div>${btn('Dettagli →','history','',`data-id="${s.id}"`)}</div>`).join(''):'<div class="card"><h2>Nessun allenamento salvato</h2></div>'}`;}
+if(page==='workout')html=db.active?(workoutController?workoutController.view():workoutCompanion(db)+editor(true)):'<h1>Nessun allenamento attivo</h1><a href="#plans">Scegli una scheda →</a>';
+if(page==='history'){let s=db.sessions.find(x=>x.id===historyId);html=`<h1>Storico</h1>${s?`${btn('← Tutte le sessioni','close-history')}<div class="card section"><h2>${esc(s.name)}</h2><p>${date(s.finished)} · ${esc(s.mode)} · ${fmt(metrics(s).volume)} kg · ${metrics(s).sets} serie · Durata ${sessionDuration(s)}</p>${s.exercises.map(e=>`<h3 class="section">${esc(e.name)}</h3>${e.sets.map(x=>`<p>${x.done?'✓':'—'} ${esc(x.type)} · ${x.kg} kg × ${x.reps}${x.type==='drop'?(x.segments||[]).map(z=>` → ${z.kg} kg × ${z.reps}`).join(''):''}${x.rir!==''?' · RIR '+esc(x.rir):''}${x.rpe!==''?' · RPE '+esc(x.rpe):''}${x.note?' · '+esc(x.note):''}</p>`).join('')}`).join('')}<p>${esc(s.note)}</p><small>Sessione salvata</small></div>`:db.sessions.length?db.sessions.slice().reverse().map(s=>`<div class="card row wrap"><div><small>${date(s.finished)} · ${esc(s.mode)}</small><h3>${esc(s.name)}</h3><small>${metrics(s).sets} serie · ${fmt(metrics(s).volume)} kg</small></div>${btn('Dettagli →','history','',`data-id="${s.id}"`)}</div>`).join(''):'<div class="card"><h2>Nessun allenamento salvato</h2></div>'}`;}
 if(page==='progress')html=progressPage(db);
 if(page==='coach')html=coachPage(db);
 if(page==='profile')html=titleSummary(db,{sandbox:!!(adminProfile&&administrator.allTitlesUnlocked(db))})+'<section class="card">'+avatarProfile(db,playerLevel(db))+'</section>'+sanctuary(db,creature,families);
@@ -77,7 +79,7 @@ if(page==='history')html=titleRewards(db)+html;
 if(page==='history'&&completion)html=celebrationView(db,completion)+html;
 if(page==='progress')html+=bodyProgress(db);
 if(page==='plans')html='<div class="row wrap"><a class="accent" href="#history">◷ Storico completo →</a><a class="accent" href="#coach">Shinka Coach →</a></div>'+html;
-if(page==='home'&&!hatchPreview)html=playerPanel()+(adminProfile?administrator.administratorControls(db):'')+rewardNotice(db)+html;if(maxPreview&&!habitatPreview&&!hatchPreview)html='<aside class="card"><strong>DEMO MAX · Giocatore 120 · Shinkaryu 100</strong><p>Anteprima temporanea: tutte le forme e i legami al massimo. Livello 100 dei mostri usato solo come limite dimostrativo. Nessun allenamento inventato nello storico. I tuoi dati reali restano separati.</p><a href="'+location.pathname+'#home">Esci dalla demo →</a></aside>'+html;$('#app').innerHTML=html||'<h1>SHINKA</h1><a href="#home">Torna alla home</a>';if(['editor','workout'].includes(page)&&oldExercises.length)for(const fold of document.querySelectorAll('[data-exercise-fold]'))fold.open=openExercises.includes(fold.dataset.exerciseFold);if(page==='progress'&&openProgress.length)for(const fold of document.querySelectorAll('[data-progress-fold]'))fold.open=openProgress.includes(fold.dataset.progressFold);hydrateAvatars($('#app'));updateRankGems($('#app'),activeRank(db,playerLevel(db)));liveRankEffects.update($('#app'),activeRank(db,playerLevel(db)));tick();rankConstancyController.refresh();}
+if(page==='home'&&!hatchPreview)html=playerPanel()+(adminProfile?administrator.administratorControls(db):'')+rewardNotice(db)+html;if(maxPreview&&!habitatPreview&&!hatchPreview)html='<aside class="card"><strong>DEMO MAX · Giocatore 120 · Shinkaryu 100</strong><p>Anteprima temporanea: tutte le forme e i legami al massimo. Livello 100 dei mostri usato solo come limite dimostrativo. Nessun allenamento inventato nello storico. I tuoi dati reali restano separati.</p><a href="'+location.pathname+'#home">Esci dalla demo →</a></aside>'+html;$('#app').innerHTML=html||'<h1>SHINKA</h1><a href="#home">Torna alla home</a>';if(['editor','workout'].includes(page)&&oldExercises.length)for(const fold of document.querySelectorAll('[data-exercise-fold]'))fold.open=openExercises.includes(fold.dataset.exerciseFold);if(page==='progress'&&openProgress.length)for(const fold of document.querySelectorAll('[data-progress-fold]'))fold.open=openProgress.includes(fold.dataset.progressFold);hydrateAvatars($('#app'));updateRankGems($('#app'),activeRank(db,playerLevel(db)));liveRankEffects.update($('#app'),activeRank(db,playerLevel(db)));tick();rankConstancyController.refresh();workoutController?.refresh();}
 function planCard(p,compact=false){const title=`<small>${p.name.startsWith('ESEMPIO')?'PROGRAMMA DIMOSTRATIVO':'SCHEDA PERSONALE'}</small><h3>${esc(p.name)}</h3><small>${p.exercises.length} esercizi · ${p.exercises.reduce((a,e)=>a+e.sets.length,0)} serie previste</small>`,actions=`<div class="row plan-actions">${duplicateButton(p)}${btn('Modifica','edit','quiet',`data-id="${p.id}"`)}${btn('Inizia →','start','primary',`data-id="${p.id}"`)}</div>`;return compact?`<details class="card plan-summary"><summary><span>${title}</span><span class="plan-chevron" aria-hidden="true">⌄</span></summary><p>${planOrganization(p,db)}</p><div class="plan-exercise-preview">${p.exercises.map(e=>'<span>'+esc(e.name)+'</span>').join('')}</div>${actions}</details>`:`<div class="card row wrap"><div>${title}<p>${planOrganization(p,db)}</p></div>${actions}</div>`}
 
 function libraryHtml(){return libraryView(db,filter)}
@@ -111,7 +113,7 @@ if(a==='rest'){if(!validInputs())return;db.timer=Date.now()+p.rest*1000;save();t
 if(a==='stop-timer'){db.timer=null;save();tick()}
 if(a==='timer-minus'||a==='timer-plus'){db.timer=adjustTimer(db.timer,a==='timer-minus'?-15:15);save();tick()}
 if(a==='pause-timer'){if(db.timer&&typeof db.timer==='object'&&db.timer.paused)db.timer=Date.now()+db.timer.remaining*1000;else db.timer={paused:true,remaining:timerSeconds(db.timer)};save();tick()}
-if(a==='finish'){if(!validInputs())return;if(!p.exercises.some(e=>e.sets.some(s=>s.done)))return toast('Completa almeno una serie');modal(`<h3>Salvare l’allenamento?</h3><p>${metrics(p).sets} serie allenanti · ${fmt(metrics(p).volume)} kg. Le serie non completate rimarranno indicate come tali.</p><p>Per avanzare servono almeno 20 minuti e 2 serie allenanti completate. Le sessioni più brevi restano nello storico.</p><p>La sessione salvata non sarà modificabile.</p>${btn('Conferma e salva','confirm-finish','primary')}`)}
+if(a==='finish'){if(!validInputs())return;modal(`<h3>Salvare l’allenamento?</h3><p>Durata attuale: ${sessionDuration({...p,finished:Date.now()})}</p><p>${metrics(p).sets} serie allenanti · ${fmt(metrics(p).volume)} kg. Le serie non completate rimarranno indicate come tali.</p><p>Per avanzare servono almeno 20 minuti e 2 serie allenanti completate. Le sessioni più brevi restano nello storico.</p><p>La sessione salvata non sarà modificabile.</p>${btn('Conferma e salva','confirm-finish','primary')}`)}
 if(a==='confirm-finish'&&db.active){let now=new Date(),day=[now.getFullYear(),now.getMonth()+1,now.getDate()].join('-');const previous=db;db={...db,sessions:[...db.sessions,{...clone(db.active),trainingRuleVersion:TRAINING_RULE_VERSION,finished:Date.now(),day}],active:null,timer:null};if(save()){try{syncTitles(db,labStorage,Date.now(),{notify:true,sandbox:!!(adminProfile&&administrator.allTitlesUnlocked(db)),source:adminProfile?administrator.titleSource(db):db});}catch{toast('Allenamento salvato. I titoli verranno rivalutati al prossimo accesso.');}completion=db.sessions.at(-1);$('#modal').close();location.hash='history';toast(isValidTraining(completion)?'Allenamento salvato':'Sessione salvata nello storico. Per la progressione servono almeno 20 minuti e 2 serie allenanti.')}else db=previous}
 if(a==='discard'&&confirm('Abbandonare? Le serie di questa sessione non saranno salvate nello storico.')){db.active=null;db.timer=null;save();location.hash='home'}
 if(a==='history'){historyId=b.dataset.id;render()}if(a==='close-history'){historyId=null;render()}
@@ -125,7 +127,8 @@ configureEnhancements({db:()=>db,save,render,current,persist:persistCurrent,moda
 setupJourney({db:()=>db,save,render,current,persist:persistCurrent,modal,toast,families});
 setupWardrobe({db:()=>db,save,render,modal,toast});
 function validInputs(){const invalid=[...document.querySelectorAll('#app input[type=number]')].find(el=>!el.checkValidity()||el.value===''&&!/\.(rir|rpe|bodyMass)$/.test(el.dataset.path||''));if(invalid){invalid.reportValidity();invalid.focus();toast('Controlla il valore numerico prima di proseguire');return false}return true}
-document.addEventListener('click',e=>{if(e.target.closest?.('[data-act]')?.dataset.act==='recovery-export')exportData();});$('#backup').onclick=exportData;window.addEventListener('hashchange',render);function tick(){tickElapsed(db);let el=$('#timer');el.hidden=!db.timer;if(!db.timer)return;let left=timerSeconds(db.timer);el.innerHTML=`<b class="number">${left?Math.floor(left/60)+':'+String(left%60).padStart(2,'0'):'Recupero terminato'}</b> ${btn('−15s','timer-minus')}${btn(typeof db.timer==='object'&&db.timer.paused?'Riprendi':'Pausa','pause-timer')}${btn('+15s','timer-plus')} ${btn('×','stop-timer','','aria-label="Chiudi timer"')}`;}setInterval(tick,1000);render();setupPwaUpdates({environment:ENVIRONMENT,isBusy:()=>!!db.active,notify:toast});
+document.addEventListener('click',e=>{if(e.target.closest?.('[data-act]')?.dataset.act==='recovery-export')exportData();});$('#backup').onclick=exportData;window.addEventListener('hashchange',render);workoutController=workoutExperience?.setupWorkout({db:()=>db,save,render,modal,toast,storage:labStorage,legacy:()=>editor(true)})||null;
+function tick(){tickElapsed(db);workoutController?.tick();let el=$('#timer');el.hidden=!db.timer||!!document.querySelector('.wf-screen');if(!db.timer)return;let left=timerSeconds(db.timer);el.innerHTML=`<b class="number">${left?Math.floor(left/60)+':'+String(left%60).padStart(2,'0'):'Recupero terminato'}</b> ${btn('−15s','timer-minus')}${btn(typeof db.timer==='object'&&db.timer.paused?'Riprendi':'Pausa','pause-timer')}${btn('+15s','timer-plus')} ${btn('×','stop-timer','','aria-label="Chiudi timer"')}`;}setInterval(tick,1000);render();setupPwaUpdates({environment:ENVIRONMENT,isBusy:()=>!!db.active,notify:toast});
 
 
 let smartPending=null;

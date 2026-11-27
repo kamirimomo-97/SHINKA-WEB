@@ -1,5 +1,5 @@
-import {rankFrameSvg} from './rank-art.js?v=0.60.8';
-import {RANKS} from './rank-system.js?v=0.60.8';
+import {rankFrameSvg} from './rank-art.js?v=0.60.9';
+import {RANKS} from './rank-system.js?v=0.60.9';
 const names=[...RANKS,'SHINKA PRIME'];
 export const RANK_COLORS=['#be96fa','#d7edff','#5fffb3','#74b7ff','#ff6a93','#ffd16c','#eed5ff','#d89cff'];
 const colors=RANK_COLORS;

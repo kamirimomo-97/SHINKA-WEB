@@ -1,10 +1,10 @@
-import {isProgressionTraining} from './training-validity.js?v=0.60.8';
-import {validTitlesState} from './title-state.js?v=0.60.8';
-import {FAMILY_LABELS} from './title-exercises.js?v=0.60.8';
-import {validRankProgress} from './rank-state-validation.js?v=0.60.8';
-import {creatureKeys} from './creature-catalog.js?v=0.60.8';
-import {appearancePalettes} from './avatar-appearance.js?v=0.60.8';
-import {avatarParts,legacyAvatarParts} from './avatar-catalog.js?v=0.60.8';
+import {isProgressionTraining} from './training-validity.js?v=0.60.9';
+import {validTitlesState} from './title-state.js?v=0.60.9';
+import {FAMILY_LABELS} from './title-exercises.js?v=0.60.9';
+import {validRankProgress} from './rank-state-validation.js?v=0.60.9';
+import {creatureKeys} from './creature-catalog.js?v=0.60.9';
+import {appearancePalettes} from './avatar-appearance.js?v=0.60.9';
+import {avatarParts,legacyAvatarParts} from './avatar-catalog.js?v=0.60.9';
 export const TYPES=['normale','warmup','top','backoff','drop'];
 export function timerSeconds(timer,now=Date.now()){if(!timer)return 0;if(typeof timer==='object'&&timer.paused)return Math.max(0,Math.ceil(timer.remaining));return Math.max(0,Math.ceil((timer-now)/1000));}
 export function adjustTimer(timer,delta,now=Date.now()){if(typeof timer==='object'&&timer?.paused)return {...timer,remaining:Math.min(3600,Math.max(0,timer.remaining+delta))};return now+Math.min(3600,Math.max(0,timerSeconds(timer,now)+delta))*1000;}
@@ -79,4 +79,10 @@ export function validate(data){
  if(data.goals!==undefined){if(!Array.isArray(data.goals)||data.goals.length>1000)fail('Obiettivi non validi');for(const g of data.goals)if(!id(g.id)||!str(g.title,120)||!['strength','consistency','weight','waist'].includes(g.kind)||!num(g.target,.1,10000)||!['up','down'].includes(g.direction)||typeof g.archived!=='boolean'||!str(g.contextKey,1000))fail('Obiettivo non valido');}
  for(const p of [...data.plans,...(data.draft?[data.draft]:[])])if(p.days!==undefined&&(!Array.isArray(p.days)||p.days.some(d=>!Number.isInteger(d)||d<0||d>6)))fail('Giorni non validi');
  return data;
+}
+
+export function sessionDuration(session){
+ if(!Number.isFinite(session?.started)||!Number.isFinite(session?.finished)||session.finished<session.started)return 'Non disponibile';
+ const seconds=Math.floor((session.finished-session.started)/1000),hours=Math.floor(seconds/3600),minutes=Math.floor(seconds%3600/60),rest=String(seconds%60).padStart(2,'0');
+ return hours?hours+' h '+String(minutes).padStart(2,'0')+' min '+rest+' s':minutes+' min '+rest+' s';
 }

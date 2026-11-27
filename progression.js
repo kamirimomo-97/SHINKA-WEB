@@ -1,6 +1,6 @@
-import {isProgressionTraining} from './training-validity.js?v=0.60.8';
-import {localDate} from './rank-system.js?v=0.60.8';
-import {metrics} from './core.js?v=0.60.8';
+import {isProgressionTraining} from './training-validity.js?v=0.60.9';
+import {localDate} from './rank-system.js?v=0.60.9';
+import {metrics} from './core.js?v=0.60.9';
 export const starterKeys=['fire','water','nature'];
 export function dayKey(time){const d=new Date(time);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
 export function weekKey(time){const d=new Date(time);d.setDate(d.getDate()-((d.getDay()+6)%7));return dayKey(d);}

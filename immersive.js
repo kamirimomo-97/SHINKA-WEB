@@ -1,4 +1,4 @@
-import {ENVIRONMENT_LABEL,ALLOW_LABS} from './app-environment.js?v=0.60.8';
+import {ENVIRONMENT_LABEL,ALLOW_LABS} from './app-environment.js?v=0.60.9';
 export const seal='<img class="shinka-seal" src="assets/brand/seal.svg" alt="" aria-hidden="true">';
 const paths={home:'<path d="m3 11 9-8 9 8v10h-7v-7h-4v7H3Z"/>',plans:'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 3h6v4H9Zm0 8h6m-6 5h6"/>',progress:'<path d="M4 20V12m8 8V7m8 13V3M2 22h20"/>',arena:'<path d="m4 3 17 18m-1-18L3 21M3 3l5 1-4 4ZM21 3l-5 1 4 4ZM2 17l5 5m10 0 5-5"/>',profile:'<path d="m12 2 8 5v10l-8 5-8-5V7Z"/><path d="m12 6 4 6-4 6-4-6Z"/>'};
 export function navigation(page){return [['home','Home'],['plans','Schede'],['progress','Progressi'],['arena','Arena'],['profile','Shinkaryu']].map(([id,label])=>`<a href="#${id}" aria-label="${label}" class="${page===id?'active':''}" ${page===id?'aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${paths[id]}</svg><span>${label}</span></a>`).join('');}

@@ -1,5 +1,5 @@
-import {rankWater} from './rank-water.js?v=0.60.8';
-import {rankSceneArt} from './rank-scene-art.js?v=0.60.8';
+import {rankWater} from './rank-water.js?v=0.60.9';
+import {rankSceneArt} from './rank-scene-art.js?v=0.60.9';
 // Coordinates belong to the approved artwork; all effects scale with that artwork.
 const torches=[[672,287],[847,286],[898,338],[418,431],[670,470],[864,542],[646,579],[311,630],[581,665],[803,735],[576,782],[222,853],[480,900],[775,988],[185,1076],[464,1113]];
 let sequence=0;

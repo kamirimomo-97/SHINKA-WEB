@@ -1,0 +1,4 @@
+Anatomical paths from https://github.com/HichamELBSI/react-native-body-highlighter
+Commit 8ed39ac2ae9cb46fb79d77eedec7e5b029a75174
+assets/bodyFront.ts and assets/bodyBack.ts; names and path geometry preserved, palette changed for SHINKA. SVG/HTML adaptation without React runtime.
+MIT license retained in LICENSE.txt.
